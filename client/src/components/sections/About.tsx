@@ -26,7 +26,7 @@ export default function About() {
       ],
       email: 'spoyer@py-partners.com',
       phone: '+ 33 (0) 6 64 12 55 58',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+      image: 'https://py-partners.com/wp-content/uploads/2025/03/serafine-poyer-1.jpg'
     },
     {
       name: t('about.virgile.name'),
@@ -40,7 +40,7 @@ export default function About() {
       ],
       email: 'vpuyau@py-partners.com',
       phone: '+ 33 (0) 6 03 93 33 67',
-      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+      image: 'https://py-partners.com/wp-content/uploads/2025/03/VPU-Photo-CV-BW.png'
     }
   ];
 
