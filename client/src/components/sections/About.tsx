@@ -57,63 +57,66 @@ export default function About() {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-gray-50">
+    <section ref={sectionRef} className="py-24 bg-gray-50">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-20">
           <h2 className="font-heading text-3xl md:text-4xl text-primary font-bold mb-6">{t('about.title')}</h2>
           <p className="text-gray-700 text-lg leading-relaxed">
             {t('about.description')}
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
           {partners.map((partner, index) => (
             <motion.div
               key={index}
-              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              className="bg-white premium-shadow premium-border overflow-hidden hover:translate-y-[-5px] transition-all duration-300"
               custom={index}
               initial="initial"
               whileInView="animate"
               viewport={{ once: true, amount: 0.2 }}
               variants={variants}
             >
-              <div className="relative h-80">
+              <div className="relative h-[400px]">
                 <img 
                   src={partner.image} 
                   alt={partner.name} 
                   className="w-full h-full object-cover" 
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary to-transparent py-6 px-8">
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent py-8 px-8">
                   <h3 className="font-heading text-2xl text-white font-bold">{partner.name}</h3>
-                  <p className="text-gray-200 font-light">{partner.role}</p>
+                  <p className="text-gray-200 font-light tracking-wide">{partner.role}</p>
                 </div>
               </div>
-              <div className="p-8">
-                <p className="text-gray-700 mb-6">
+              <div className="p-10">
+                <p className="text-gray-700 mb-8">
                   {partner.bio}
                 </p>
-                <div className="border-t border-gray-200 pt-4">
-                  <div className="mb-3">
-                    <h4 className="text-sm uppercase tracking-wide text-gray-500 font-semibold mb-2">
+                <div className="border-t border-gray-100 pt-6">
+                  <div className="mb-6">
+                    <h4 className="text-xs uppercase tracking-wider text-gray-500 font-semibold mb-3">
                       {index === 0 ? t('about.serafine.education') : t('about.virgile.education')}
                     </h4>
-                    <ul className="text-gray-700 space-y-1">
+                    <ul className="text-gray-700 space-y-2 text-sm">
                       {partner.education.map((edu, eduIndex) => (
-                        <li key={eduIndex}>{edu}</li>
+                        <li key={eduIndex} className="flex items-start">
+                          <span className="text-black mr-2">•</span>
+                          {edu}
+                        </li>
                       ))}
                     </ul>
                   </div>
                   <div>
-                    <h4 className="text-sm uppercase tracking-wide text-gray-500 font-semibold mb-2">
+                    <h4 className="text-xs uppercase tracking-wider text-gray-500 font-semibold mb-3">
                       {index === 0 ? t('about.serafine.contact') : t('about.virgile.contact')}
                     </h4>
                     <a 
                       href={`mailto:${partner.email}`} 
-                      className="text-secondary hover:text-secondary/80 transition-colors duration-200"
+                      className="text-black hover:text-secondary transition-colors duration-200 block mb-1"
                     >
                       {partner.email}
                     </a>
-                    <p className="text-gray-700">{partner.phone}</p>
+                    <p className="text-gray-700 text-sm">{partner.phone}</p>
                   </div>
                 </div>
               </div>

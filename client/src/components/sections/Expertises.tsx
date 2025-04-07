@@ -65,9 +65,9 @@ export default function Expertises() {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-white">
+    <section ref={sectionRef} className="py-24 bg-white">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-20">
           <h2 className="font-heading text-3xl md:text-4xl text-primary font-bold mb-6">{t('expertises.title')}</h2>
           <p className="text-gray-700 text-lg leading-relaxed">
             {t('expertises.description')}
@@ -75,7 +75,7 @@ export default function Expertises() {
         </div>
 
         <motion.div 
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
           variants={container}
           initial="hidden"
           whileInView="show"
@@ -84,11 +84,11 @@ export default function Expertises() {
           {expertiseAreas.map((area, index) => (
             <motion.div 
               key={index} 
-              className="bg-white rounded-lg shadow p-8 hover:shadow-lg transition-shadow duration-300 border-t-4 border-secondary"
+              className="bg-white p-8 premium-shadow premium-border hover:bg-gray-50 transition-all duration-300"
               variants={item}
             >
-              <h3 className="text-xl font-heading font-bold text-primary mb-4">{area.title}</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg font-heading font-bold text-primary mb-4">{area.title}</h3>
+              <p className="text-gray-600 text-sm">
                 {area.description}
               </p>
             </motion.div>
