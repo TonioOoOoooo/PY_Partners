@@ -20,7 +20,7 @@ export default function About() {
       role: t('about.serafine.role'),
       bio: t('about.serafine.bio'),
       education: [
-        'Avocat au Barreau de Paris',
+        'Examen du Barreau de Paris - Promotion 2008',
         'DESS DPS – Université de Montpellier',
         'Maîtrise de droit social – Université Panthéon-Assas',
       ],
@@ -33,7 +33,7 @@ export default function About() {
       role: t('about.virgile.role'),
       bio: t('about.virgile.bio'),
       education: [
-        'Avocat au Barreau de Paris',
+        'Examen du Barreau de Paris - Promotion 2008',
         'DESS DPRT – Université Panthéon-Assas',
         'DESS Droit du travail et GRH – Université Paris XIII',
         'Maîtrise de droit social – Université Panthéon-Assas',

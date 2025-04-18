@@ -8,8 +8,8 @@ export const translations = {
       contact: 'Contact'
     },
     hero: {
-      title: 'Un cabinet d\'avocats de droit social indépendant au service des Dirigeants et des Entreprises',
-      subtitle: 'PY Partners incarne l\'alliance d\'une expertise pointue en droit social et d\'une vision moderne des relations professionnelles.',
+      title: 'Un cabinet d\'avocats de droit social aux côtés des Dirigeants et des Entreprises',
+      subtitle: 'PY Partners incarne l\'alliance d\'une expertise pointue en droit social et d\'une vision moderne et précise des relations professionnelles.',
       cta1: 'Découvrir nos expertises',
       cta2: 'Nous contacter'
     },
@@ -20,7 +20,7 @@ export const translations = {
       expertise: {
         directors: {
           title: 'Accompagnement des Dirigeants',
-          description: 'Négociation d\'entrées et de départs, packages et rémunérations'
+          description: 'Négociation de packages, structure de la rémunération, mise en place du cumul du contrat de travail / mandat social, communication'
         },
         strategic: {
           title: 'Conseil stratégique',
@@ -28,11 +28,11 @@ export const translations = {
         },
         restructuring: {
           title: 'Restructurations',
-          description: 'Accompagnement des réorganisations (acquisitions, cessions, fusions)'
+          description: 'Implémentation de réorganisations (opérations de fusions&acquisitions, réductions d\'effectifs)'
         },
         collective: {
           title: 'Relations collectives',
-          description: 'Élaboration et mise en œuvre d\'accords collectifs'
+          description: 'Gestion des relations avec le CSE, élaboration des accords (temps de travail, épargne salariale, chartes et règlements)'
         },
         litigation: {
           title: 'Contentieux social',
@@ -40,17 +40,17 @@ export const translations = {
         },
         compliance: {
           title: 'Conformité et risques',
-          description: 'Due diligence et sécurisation des pratiques RH et sociales'
+          description: 'Audits sociaux, sécurisation des pratiques RH, enquêtes internes'
         }
       }
     },
     about: {
       title: 'Notre équipe',
-      description: 'PY Partners est fondé par deux experts reconnus dans le domaine du droit social, combinant plusieurs décennies d\'expérience au service des entreprises et des dirigeants.',
+      description: 'PY Partners est un cabinet d\'avocats indépendant, fondé par deux experts de droit social reconnus pour une approche pointue et réactive au service des Entreprises et des Dirigeants.',
       serafine: {
         name: 'Sérafine Poyer',
         role: 'Associée fondatrice',
-        bio: 'Sérafine Poyer dispose d\'une expertise renommée en droit social, tant en conseil qu\'en contentieux. Elle a plus particulièrement développé une forte notoriété dans l\'accompagnement des dirigeants et mandataires sociaux, en collaborant étroitement avec des experts en contentieux de haut bilan pour la sécurisation des packages.',
+        bio: 'Sérafine Poyer dispose d\'une expertise renommée en droit social, tant en conseil qu\'en contentieux. Elle a plus particulièrement développé une forte notoriété dans l\'accompagnement sur-mesure des sorties de Dirigeants et Mandataires sociaux et la sécurisation des packages, en collaboration étroite avec des experts en contentieux de haut bilan.',
         education: 'Formation',
         contact: 'Contact'
       },
@@ -64,15 +64,15 @@ export const translations = {
     },
     expertises: {
       title: 'Des solutions sur-mesure pour Dirigeants et Entreprises',
-      description: 'Notre cabinet propose un accompagnement personnalisé pour répondre aux défis juridiques spécifiques des entreprises et de leurs dirigeants.',
+      description: 'Notre cabinet propose un accompagnement personnalisé à forte valeur ajoutée pour répondre aux défis juridiques des Entreprises et des Dirigeants.',
       areas: {
         directors: {
-          title: 'SORTIES DE DIRIGEANTS',
-          description: 'Accompagnement sur-mesure des cadres dirigeants et mandataires sociaux dans leurs négociations de départ, en veillant à la sécurisation juridique et financière de leur sortie.'
+          title: 'ENTRÉES ET SORTIES DE DIRIGEANTS',
+          description: 'Accompagnement sur-mesure des Dirigeants ou des Directions des Ressources Humaines dans leurs négociations à l\'entrée ou à la sortie, sécurisation juridique des sorties (régime social/fiscal, communication), mise en place du cumul contrat de travail/mandat social, structure de la rémunération'
         },
         individual: {
           title: 'RELATIONS INDIVIDUELLES',
-          description: 'Conseil et gestion des problématiques liées aux contrats de travail, sanctions disciplinaires, ruptures de contrat de travail et litiges individuels.'
+          description: 'Conseil et gestion des problématiques liées aux contrats de travail, sanctions disciplinaires, ruptures de contrat de travail et enquêtes internes.'
         },
         restructuring: {
           title: 'RÉORGANISATIONS / RESTRUCTURATIONS',
@@ -80,10 +80,10 @@ export const translations = {
         },
         negotiation: {
           title: 'NÉGOCIATION COLLECTIVE',
-          description: 'Élaboration, pilotage et sécurisation des accords collectifs, gestion des relations sociales et du dialogue avec les organisations syndicales et les représentants du personnel.'
+          description: 'Gestion des relations sociales et du dialogue avec les représentants du personnel et organisations syndicales, élaboration, pilotage et sécurisation des accords collectifs.'
         },
         ma: {
-          title: 'SUPPORT M&A',
+          title: 'AUDITS SOCIAUX',
           description: 'Conseil en matière sociale lors des opérations de fusion-acquisition, audits de conformité, gestion des transferts de personnel et harmonisation des statuts collectifs.'
         },
         litigation: {
@@ -92,7 +92,7 @@ export const translations = {
         },
         security: {
           title: 'SÉCURITE SOCIALE',
-          description: 'Gestion et contestation des accidents du travail et maladies professionnelles, optimisation des cotisations sociales et accompagnement dans les contrôles URSSAF.'
+          description: 'Gestion et contestation des accidents du travail et maladies professionnelles et accompagnement dans les contrôles URSSAF.'
         },
         mobility: {
           title: 'MOBILITE INTERNATIONALE',
@@ -147,7 +147,7 @@ export const translations = {
       }
     },
     footer: {
-      description: 'Un cabinet d\'avocats de droit social indépendant au service des Dirigeants et des Entreprises.',
+      description: 'Un cabinet d\'avocats de droit social aux côtés des Dirigeants et des Entreprises.',
       navigation: 'Navigation',
       contact: 'Contact',
       copyright: '© 2023 PY Partners. Tous droits réservés.'
@@ -156,7 +156,8 @@ export const translations = {
       title: 'Politique de cookies',
       description: 'Ce site utilise des cookies pour améliorer votre expérience. En poursuivant votre navigation, vous acceptez notre utilisation des cookies.',
       accept: 'Accepter tous les cookies',
-      customize: 'Personnaliser'
+      customize: 'Personnaliser',
+      revisit: 'Revoir les paramètres de cookies'
     },
     language: 'Français'
   },
@@ -169,19 +170,19 @@ export const translations = {
       contact: 'Contact'
     },
     hero: {
-      title: 'An independent social law firm serving Executives and Companies',
-      subtitle: 'PY Partners embodies the alliance of sharp expertise in social law and a modern vision of professional relationships.',
+      title: 'A labor law firm supporting Executives and Companies',
+      subtitle: 'PY Partners embodies the alliance of sharp expertise in labor law and a modern, precise vision of professional relationships.',
       cta1: 'Discover our expertise',
       cta2: 'Contact us'
     },
     intro: {
       title: 'Our Expertise',
-      description: 'Founded by Sérafine Poyer and Virgile Puyau, PY Partners is a social law firm dedicated to the strategic support of Executives and Companies.',
+      description: 'Founded by Sérafine Poyer and Virgile Puyau, PY Partners is a labor law firm dedicated to the strategic support of Executives and Companies.',
       learnMore: 'Learn more',
       expertise: {
         directors: {
           title: 'Executive Support',
-          description: 'Negotiation of entries and departures, packages and remuneration'
+          description: 'Package negotiation, remuneration structure, implementation of employment contract/corporate office combination, communication'
         },
         strategic: {
           title: 'Strategic advice',
@@ -189,11 +190,11 @@ export const translations = {
         },
         restructuring: {
           title: 'Restructuring',
-          description: 'Support for reorganizations (acquisitions, disposals, mergers)'
+          description: 'Implementation of reorganizations (mergers & acquisitions, workforce reductions)'
         },
         collective: {
           title: 'Collective relations',
-          description: 'Development and implementation of collective agreements'
+          description: 'Management of relations with the CSE, development of agreements (working time, employee savings, charters and regulations)'
         },
         litigation: {
           title: 'Social litigation',
@@ -201,17 +202,17 @@ export const translations = {
         },
         compliance: {
           title: 'Compliance and risks',
-          description: 'Due diligence and security of HR and social practices'
+          description: 'Social audits, securing HR practices, internal investigations'
         }
       }
     },
     about: {
       title: 'Our team',
-      description: 'PY Partners is founded by two recognized experts in the field of social law, combining several decades of experience serving companies and executives.',
+      description: 'PY Partners is an independent law firm, founded by two recognized labor law experts known for their precise and responsive approach in serving Companies and Executives.',
       serafine: {
         name: 'Sérafine Poyer',
         role: 'Founding Partner',
-        bio: 'Sérafine Poyer has renowned expertise in social law, both in consulting and litigation. She has particularly developed a strong reputation in supporting executives and corporate officers, working closely with high-level litigation experts to secure packages.',
+        bio: 'Sérafine Poyer has renowned expertise in labor law, both in consulting and litigation. She has particularly developed a strong reputation in custom support for Executive and Corporate Officer departures and securing packages, working closely with high-level litigation experts.',
         education: 'Education',
         contact: 'Contact'
       },
@@ -225,15 +226,15 @@ export const translations = {
     },
     expertises: {
       title: 'Tailor-made solutions for Executives and Companies',
-      description: 'Our firm offers personalized support to meet the specific legal challenges of companies and their executives.',
+      description: 'Our firm offers personalized high value-added support to meet the specific legal challenges of Companies and their Executives.',
       areas: {
         directors: {
-          title: 'EXECUTIVE DEPARTURES',
-          description: 'Tailor-made support for executives and corporate officers in their departure negotiations, ensuring legal and financial security.'
+          title: 'EXECUTIVE ENTRIES AND DEPARTURES',
+          description: 'Tailor-made support for Executives or Human Resources Departments in their entry or departure negotiations, legal security of departures (social/tax regime, communication), implementation of employment contract/corporate office combination, remuneration structure'
         },
         individual: {
           title: 'INDIVIDUAL RELATIONS',
-          description: 'Advice and management of issues related to employment contracts, disciplinary sanctions, termination of employment contracts and individual disputes.'
+          description: 'Advice and management of issues related to employment contracts, disciplinary sanctions, termination of employment contracts and internal investigations.'
         },
         restructuring: {
           title: 'REORGANIZATIONS / RESTRUCTURING',
@@ -241,10 +242,10 @@ export const translations = {
         },
         negotiation: {
           title: 'COLLECTIVE NEGOTIATION',
-          description: 'Development, management and securitization of collective agreements, management of social relations and dialogue with trade unions and staff representatives.'
+          description: 'Management of social relations and dialogue with staff representatives and trade unions, development, management and securitization of collective agreements.'
         },
         ma: {
-          title: 'M&A SUPPORT',
+          title: 'SOCIAL AUDITS',
           description: 'Social advice during merger and acquisition operations, compliance audits, personnel transfer management and harmonization of collective statuses.'
         },
         litigation: {
@@ -253,7 +254,7 @@ export const translations = {
         },
         security: {
           title: 'SOCIAL SECURITY',
-          description: 'Management and contestation of work accidents and occupational diseases, optimization of social contributions and support in URSSAF controls.'
+          description: 'Management and contestation of work accidents and occupational diseases and support in URSSAF controls.'
         },
         mobility: {
           title: 'INTERNATIONAL MOBILITY',
@@ -308,7 +309,7 @@ export const translations = {
       }
     },
     footer: {
-      description: 'An independent social law firm serving Executives and Companies.',
+      description: 'A labor law firm supporting Executives and Companies.',
       navigation: 'Navigation',
       contact: 'Contact',
       copyright: '© 2023 PY Partners. All rights reserved.'
@@ -317,7 +318,8 @@ export const translations = {
       title: 'Cookie policy',
       description: 'This site uses cookies to improve your experience. By continuing to browse, you accept our use of cookies.',
       accept: 'Accept all cookies',
-      customize: 'Customize'
+      customize: 'Customize',
+      revisit: 'Review cookie settings'
     },
     language: 'English'
   }

@@ -13,11 +13,9 @@ export default function Hero({ onDiscoverClick, onContactClick }: HeroProps) {
       <div className="container mx-auto px-4 md:px-6 lg:px-8 py-20">
         <div className="max-w-3xl">
           <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl text-white font-bold leading-tight mb-6">
-            {t('hero.title').split(' au service des ')[0]} 
-            <span className="text-secondary"> {t('hero.title').includes(' au service des ') ? 'au service des' : ''} </span>
-            {t('hero.title').includes(' au service des ') ? t('hero.title').split(' au service des ')[1] : ''}
+            {t('hero.title')}
           </h1>
-          <p className="text-gray-200 text-lg md:text-xl mb-12 font-light tracking-wide">
+          <p className="text-gray-200 text-lg md:text-xl mb-12 font-light tracking-wide mt-8">
             {t('hero.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
