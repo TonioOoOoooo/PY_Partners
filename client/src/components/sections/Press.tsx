@@ -38,7 +38,7 @@ export default function Press() {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-gray-800 text-white">
+    <section ref={sectionRef} className="py-20 bg-gray-600 text-white">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="font-heading text-3xl md:text-4xl text-white font-bold mb-6">{t('press.title')}</h2>
@@ -51,7 +51,7 @@ export default function Press() {
           {testimonials.map((testimonial, index) => (
             <motion.div 
               key={index}
-              className="bg-gray-700 p-8 rounded-lg relative"
+              className="bg-gray-500 p-8 rounded-lg relative"
               custom={index}
               initial="hidden"
               whileInView="visible"
@@ -78,7 +78,7 @@ export default function Press() {
           transition={{ delay: 0.5, duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="inline-block bg-gray-700 p-4 rounded-lg">
+          <div className="inline-block bg-gray-500 p-4 rounded-lg">
             <p className="text-gray-300 mb-3">{t('press.recognition')}</p>
           </div>
         </motion.div>
