@@ -113,7 +113,7 @@ export const translations = {
           source: 'Legal 500 – 2024'
         }
       },
-      recognition: 'Recognized in The Best Lawyers in France™ 2025 for work in Labor and Employment Law'
+      recognition: 'Reconnu dans The Best Lawyers in France™ 2025 pour son expertise en Droit Social et Droit du Travail'
     },
     contact: {
       title: 'Nous contacter',

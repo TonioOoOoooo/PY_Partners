@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { apiRequest } from '@/lib/queryClient';
+import { apiRequest } from '@/lib/queryClient'; // Utilisons l'utilitaire apiRequest existant
 import { useMutation } from '@tanstack/react-query';
 import { useToast } from '@/hooks/use-toast';
 
@@ -42,6 +42,7 @@ export default function Contact() {
     }
   });
 
+  // Utiliser apiRequest pour envoyer les données à notre propre API qui fait office de proxy
   const mutation = useMutation({
     mutationFn: async (data: FormValues) => {
       const response = await apiRequest('POST', '/api/contact', data);
@@ -49,16 +50,20 @@ export default function Contact() {
     },
     onSuccess: () => {
       toast({
-        title: "Success",
-        description: "Your message has been sent. We'll contact you soon.",
+        title: t('language') === 'Français' ? "Succès" : "Success",
+        description: t('language') === 'Français' 
+          ? "Votre message a été envoyé. Nous vous contacterons bientôt."
+          : "Your message has been sent. We'll contact you soon.",
       });
       reset();
       setFormSubmitted(true);
     },
     onError: (error) => {
       toast({
-        title: "Error",
-        description: `Failed to send message: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        title: t('language') === 'Français' ? "Erreur" : "Error",
+        description: t('language') === 'Français'
+          ? `Échec de l'envoi du message: ${error instanceof Error ? error.message : 'Erreur inconnue'}`
+          : `Failed to send message: ${error instanceof Error ? error.message : 'Unknown error'}`,
         variant: "destructive",
       });
     }
@@ -157,7 +162,7 @@ export default function Contact() {
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
-                        Processing...
+                        {t('language') === 'Français' ? 'Traitement en cours...' : 'Processing...'}
                       </span>
                     ) : (
                       t('contact.form.submit')
@@ -219,13 +224,14 @@ export default function Contact() {
                 
                 <div className="mt-12">
                   <div className="overflow-hidden premium-shadow">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.2124221389495!2d2.3242684154408967!3d48.86627997928799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2s13%20Rue%20Royale%2C%2075008%20Paris%2C%20France!5e0!3m2!1sen!2sus!4v1651234567890!5m2!1sen!2sus"
-                      width="100%"
-                      height="280"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
+                    <iframe 
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10496.856055671008!2d2.3195280356631173!3d48.86872899687341!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2f9719f48f%3A0xd4c836ef33c117e8!2s13%20Rue%20Royale%2C%2075008%20Paris!5e0!3m2!1sfr!2sfr!4v1714597513644!5m2!1sfr!2sfr" 
+                      width="100%" 
+                      height="280" 
+                      style={{ border: 0 }} 
+                      allowFullScreen 
+                      loading="lazy" 
+                      referrerPolicy="no-referrer-when-downgrade"
                       title="PY Partners office location"
                     ></iframe>
                   </div>
