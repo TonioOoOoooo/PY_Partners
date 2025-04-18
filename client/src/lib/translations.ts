@@ -19,7 +19,7 @@ export const translations = {
       learnMore: 'En savoir plus',
       expertise: {
         directors: {
-          title: 'Accompagnement des Dirigeants',
+          title: 'Accompagnement des entrées et sorties de Dirigeants',
           description: 'Négociation de packages, structure de la rémunération, mise en place du cumul du contrat de travail / mandat social, communication'
         },
         strategic: {
@@ -80,7 +80,7 @@ export const translations = {
         },
         negotiation: {
           title: 'NÉGOCIATION COLLECTIVE',
-          description: 'Gestion des relations sociales et du dialogue avec les représentants du personnel et organisations syndicales, élaboration, pilotage et sécurisation des accords collectifs.'
+          description: 'Gestion des relations sociales et du dialogue avec les représentants du personnel et organisations syndicales.'
         },
         ma: {
           title: 'AUDITS SOCIAUX',
