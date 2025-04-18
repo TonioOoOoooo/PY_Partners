@@ -1,129 +1,101 @@
-import { useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from 'framer-motion';
+import RevisitConsentButton from './RevisitConsentButton';
 
-export default function About() {
+export default function CookieConsent() {
   const { t } = useLanguage();
-  const { reveal } = useScrollReveal();
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [customDialogOpen, setCustomDialogOpen] = useState(false);
 
   useEffect(() => {
-    if (sectionRef.current) {
-      reveal(sectionRef.current);
+    // Show cookie consent after delay if not already accepted
+    const cookieConsent = localStorage.getItem('cookieConsent');
+    if (!cookieConsent) {
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+      }, 2000);
+      
+      return () => clearTimeout(timer);
     }
-  }, [reveal]);
+  }, []);
 
-  const partners = [
-    {
-      name: t('about.serafine.name'),
-      role: t('about.serafine.role'),
-      bio: t('about.serafine.bio'),
-      education: [
-        'Examen du Barreau de Paris - Promotion 2008',
-        'DESS DPS – Université de Montpellier',
-        'Maîtrise de droit social – Université Panthéon-Assas',
-      ],
-      email: 'spoyer@py-partners.com',
-      phone: '+ 33 (0) 6 64 12 55 58',
-      image: 'https://py-partners.com/wp-content/uploads/2025/03/serafine-poyer-1.jpg'
-    },
-    {
-      name: t('about.virgile.name'),
-      role: t('about.virgile.role'),
-      bio: t('about.virgile.bio'),
-      education: [
-        'Examen du Barreau de Paris - Promotion 2008',
-        'DESS DPRT – Université Panthéon-Assas',
-        'DESS Droit du travail et GRH – Université Paris XIII',
-        'Maîtrise de droit social – Université Panthéon-Assas',
-      ],
-      email: 'vpuyau@py-partners.com',
-      phone: '+ 33 (0) 6 03 93 33 67',
-      image: 'https://py-partners.com/wp-content/uploads/2025/03/VPU-Photo-CV-BW.png'
-    }
-  ];
+  const acceptCookies = () => {
+    localStorage.setItem('cookieConsent', 'accepted');
+    setIsVisible(false);
+  };
 
-  const variants = {
-    initial: { opacity: 0, y: 50 },
-    animate: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.2,
-        duration: 0.5
-      }
-    })
+  const customizeCookies = () => {
+    // This would typically open a modal with cookie settings
+    setCustomDialogOpen(true);
+  };
+
+  const closeCookieConsent = () => {
+    setIsVisible(false);
   };
 
   return (
-    <section ref={sectionRef} className="py-24 bg-gray-50">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-20">
-          <h2 className="font-heading text-3xl md:text-4xl text-primary font-bold mb-6">{t('about.title')}</h2>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            {t('about.description')}
-          </p>
-        </div>
+    <>
+      <AnimatePresence>
+        {isVisible && (
+          <motion.div 
+            className="fixed bottom-4 left-4 right-4 md:left-8 md:right-auto md:max-w-md bg-white rounded-lg shadow-xl p-6 z-50"
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="flex justify-between items-start mb-4">
+              <h3 className="font-heading text-lg font-bold text-primary">{t('cookies.title')}</h3>
+              <button className="text-gray-400 hover:text-gray-500" onClick={closeCookieConsent}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </div>
+            <p className="text-gray-600 text-sm mb-4">
+              {t('cookies.description')}
+            </p>
+            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+              <button 
+                className="bg-secondary hover:bg-secondary/90 text-primary font-medium px-4 py-2 rounded-md transition duration-300 text-sm"
+                onClick={acceptCookies}
+              >
+                {t('cookies.accept')}
+              </button>
+              <button 
+                className="bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium px-4 py-2 rounded-md transition duration-300 text-sm"
+                onClick={customizeCookies}
+              >
+                {t('cookies.customize')}
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
-          {partners.map((partner, index) => (
-            <motion.div
-              key={index}
-              className="bg-white premium-shadow premium-border overflow-hidden hover:translate-y-[-5px] transition-all duration-300"
-              custom={index}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={variants}
-            >
-              <div className="relative h-[400px]">
-                <img 
-                  src={partner.image} 
-                  alt={partner.name} 
-                  className="w-full h-full object-cover" 
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent py-8 px-8">
-                  <h3 className="font-heading text-2xl text-white font-bold">{partner.name}</h3>
-                  <p className="text-gray-200 font-light tracking-wide">{partner.role}</p>
-                </div>
-              </div>
-              <div className="p-10">
-                <p className="text-gray-700 mb-8">
-                  {partner.bio}
-                </p>
-                <div className="border-t border-gray-100 pt-6">
-                  <div className="mb-6">
-                    <h4 className="text-xs uppercase tracking-wider text-gray-500 font-semibold mb-3">
-                      {index === 0 ? t('about.serafine.education') : t('about.virgile.education')}
-                    </h4>
-                    <ul className="text-gray-700 space-y-2 text-sm">
-                      {partner.education.map((edu, eduIndex) => (
-                        <li key={eduIndex} className="flex items-start">
-                          <span className="text-black mr-2">•</span>
-                          {edu}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="text-xs uppercase tracking-wider text-gray-500 font-semibold mb-3">
-                      {index === 0 ? t('about.serafine.contact') : t('about.virgile.contact')}
-                    </h4>
-                    <a 
-                      href={`mailto:${partner.email}`} 
-                      className="text-black hover:text-secondary transition-colors duration-200 block mb-1"
-                    >
-                      {partner.email}
-                    </a>
-                    <p className="text-gray-700 text-sm">{partner.phone}</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+      {/* Show the revisit consent button only if cookies have been accepted */}
+      {!isVisible && localStorage.getItem('cookieConsent') === 'accepted' && (
+        <RevisitConsentButton />
+      )}
+
+      {/* Simple modal for "Customize Cookies" - in a real app, this would be more elaborate */}
+      {customDialogOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg max-w-md w-full mx-4">
+            <h3 className="font-heading text-xl font-bold mb-4">{t('cookies.customize')}</h3>
+            <p className="mb-6 text-gray-600">Cette fonctionnalité sera disponible prochainement.</p>
+            <div className="flex justify-end">
+              <button 
+                className="bg-primary text-white px-4 py-2 rounded"
+                onClick={() => setCustomDialogOpen(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      )}
+    </>
   );
 }
