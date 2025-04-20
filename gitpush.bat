@@ -10,11 +10,11 @@ set /p commit_message="Entrez votre message de commit : "
 rem Ajouter tous les fichiers modifiés
 git add -u
 
-rem Demander si l'utilisateur veut ajouter les nouveaux fichiers
-set /p add_new="Voulez-vous ajouter les nouveaux fichiers? (o/n) "
+rem Demander si l'utilisateur veut ajouter les nouveaux fichiers images (sans les .old)
+set /p add_new="Voulez-vous ajouter les nouveaux fichiers images? (o/n) "
 
 if "%add_new%"=="o" (
-  git add .
+  git add client/src/assets/*.jpg client/src/assets/*.png
 )
 
 rem Créer un commit avec le message fourni
@@ -23,4 +23,4 @@ git commit -m "%commit_message%"
 rem Pousser les changements vers le dépôt distant
 git push origin main
 
-echo Changements commités et poussés avec succès!
+echo Changements commites et pousses avec succes!
