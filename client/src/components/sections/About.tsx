@@ -3,6 +3,10 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { motion } from "framer-motion";
 
+// Import direct des images
+import serafineImage from '@/assets/serafine-poyer-1.jpg';
+import virgileImage from '@/assets/VPU-Photo-CV-BW.png';
+
 export default function About() {
   const { t } = useLanguage();
   const { reveal } = useScrollReveal();
@@ -20,27 +24,27 @@ export default function About() {
       role: t('about.serafine.role'),
       bio: t('about.serafine.bio'),
       education: [
-        'Examen du Barreau de Paris - Promotion 2008',
+        'Barreau de Paris - Promotion 2008',
         'DESS DPS – Université de Montpellier',
         'Maîtrise de droit social – Université Panthéon-Assas',
       ],
       email: 'spoyer@py-partners.com',
       phone: '+ 33 (0) 6 64 12 55 58',
-      image: 'https://py-partners.com/wp-content/uploads/2025/03/serafine-poyer-1.jpg'
+      image: serafineImage
     },
     {
       name: t('about.virgile.name'),
       role: t('about.virgile.role'),
       bio: t('about.virgile.bio'),
       education: [
-        'Examen du Barreau de Paris - Promotion 2008',
+        'Barreau de Paris - Promotion 2008',
         'DESS DPRT – Université Panthéon-Assas',
         'DESS Droit du travail et GRH – Université Paris XIII',
         'Maîtrise de droit social – Université Panthéon-Assas',
       ],
       email: 'vpuyau@py-partners.com',
       phone: '+ 33 (0) 6 03 93 33 67',
-      image: 'https://py-partners.com/wp-content/uploads/2025/03/VPU-Photo-CV-BW.png'
+      image: virgileImage
     }
   ];
 
@@ -57,7 +61,7 @@ export default function About() {
   };
 
   return (
-    <section ref={sectionRef} className="py-24 bg-gray-50">
+    <section ref={sectionRef} id="a-propos" className="py-24 bg-gray-50">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-20">
           <h2 className="font-heading text-3xl md:text-4xl text-primary font-bold mb-6">{t('about.title')}</h2>
@@ -83,7 +87,7 @@ export default function About() {
                   alt={partner.name} 
                   className="w-full h-full object-cover" 
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent py-8 px-8">
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-800 to-transparent py-8 px-8">
                   <h3 className="font-heading text-2xl text-white font-bold">{partner.name}</h3>
                   <p className="text-gray-200 font-light tracking-wide">{partner.role}</p>
                 </div>
@@ -100,7 +104,7 @@ export default function About() {
                     <ul className="text-gray-700 space-y-2 text-sm">
                       {partner.education.map((edu, eduIndex) => (
                         <li key={eduIndex} className="flex items-start">
-                          <span className="text-black mr-2">•</span>
+                          <span className="text-gray-800 mr-2">•</span>
                           {edu}
                         </li>
                       ))}
@@ -112,7 +116,7 @@ export default function About() {
                     </h4>
                     <a 
                       href={`mailto:${partner.email}`} 
-                      className="text-black hover:text-secondary transition-colors duration-200 block mb-1"
+                      className="text-gray-800 hover:text-secondary transition-colors duration-200 block mb-1"
                     >
                       {partner.email}
                     </a>

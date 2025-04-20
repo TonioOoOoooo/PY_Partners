@@ -7,14 +7,14 @@ export const translations = {
       press: 'Presse',
       contact: 'Contact'
     },
-  hero: {
-    title: 'PY PARTNERS',
-    subtitle: 'PARIS',
-    tagline: 'We master the details. So, you don\'t have to.',
-    description: 'Cabinet d\'avocats spécialisé en droit social au service des Entreprises et Dirigeants.',
-    cta1: 'Découvrir nos expertises',
-    cta2: 'Nous contacter'
-  },
+hero: {
+  title: 'PY PARTNERS',
+  subtitle: 'PARIS',
+  tagline: 'Nous maîtrisons les détails. Ainsi, vous n\'avez pas à le faire.',
+  description: 'Cabinet d\'avocats spécialisé en droit social au service des Entreprises et Dirigeants.',
+  cta1: 'Découvrir nos expertises',
+  cta2: 'Nous contacter'
+},
     intro: {
       title: 'Notre Expertise',
       description: 'Fondé par Sérafine Poyer et Virgile Puyau, PY Partners est un cabinet d\'avocats de droit social dédié à l\'accompagnement stratégique des Dirigeants et des Entreprises.',
@@ -171,14 +171,14 @@ export const translations = {
       press: 'Press',
       contact: 'Contact'
     },
-  hero: {
-    title: 'PY PARTNERS',
-    subtitle: 'PARIS',
-    tagline: 'We master the details. So, you don\'t have to.',
-    description: 'Labor law firm dedicated to serving Companies and Executives.',
-    cta1: 'Discover our expertise',
-    cta2: 'Contact us'
-  },
+hero: {
+  title: 'PY PARTNERS',
+  subtitle: 'PARIS',
+  tagline: 'We master the details. So, you don\'t have to.',
+  description: 'Labor law firm dedicated to serving Companies and Executives.',
+  cta1: 'Discover our expertise',
+  cta2: 'Contact us'
+},
     intro: {
       title: 'Our Expertise',
       description: 'Founded by Sérafine Poyer and Virgile Puyau, PY Partners is a labor law firm dedicated to the strategic support of Executives and Companies.',
