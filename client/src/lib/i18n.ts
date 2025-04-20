@@ -10,7 +10,13 @@ interface LanguageState {
 }
 
 export const useLanguageStore = create<LanguageState>((set, get) => ({
-  language: 'fr',
+  language: ((): Language => {
+    if (typeof window !== 'undefined') {
+      const userLang = navigator.language || navigator.languages?.[0] || 'en';
+      return userLang.toLowerCase().startsWith('fr') ? 'fr' : 'en';
+    }
+    return 'en';
+  })(),
   setLanguage: (language: Language) => set({ language }),
   t: (key: string) => {
     const { language } = get();

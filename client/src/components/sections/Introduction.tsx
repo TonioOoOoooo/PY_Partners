@@ -2,6 +2,18 @@ import { useRef, useEffect } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { motion } from "framer-motion";
+import EnhancedExpertiseCard from "@/components/common/EnhancedExpertiseCard";
+
+// Helper to scroll to the 'Expertises' section
+function scrollToExpertisesSection() {
+  const section = document.getElementById('expertises');
+  if (section) {
+    const offset = 80;
+    const elementPosition = section.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - offset;
+    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+  }
+}
 
 export default function Introduction() {
   const { t } = useLanguage();
@@ -102,25 +114,17 @@ export default function Introduction() {
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {expertiseData.map((expertise, index) => (
-            <motion.div 
-              key={index} 
-              className="expertise-card bg-white rounded-lg shadow-md p-8 transition duration-300 hover:border-l-4 hover:border-secondary"
-              variants={item}
-            >
-              <div className="text-secondary mb-4">
-                {expertise.icon}
-              </div>
-              <h3 className="text-xl font-heading font-bold text-primary mb-3">{expertise.title}</h3>
-              <p className="text-gray-600 mb-4">{expertise.description}</p>
-              <a href="#expertises" className="text-secondary hover:text-secondary/80 inline-flex items-center">
-                {t('intro.learnMore')}
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </a>
-            </motion.div>
-          ))}
+{expertiseData.map((expertise, index) => (
+  <EnhancedExpertiseCard
+    key={index}
+    title={expertise.title}
+    description={expertise.description}
+    icon={expertise.icon}
+    index={index}
+    onLearnMore={scrollToExpertisesSection}
+  />
+))}
+         
         </motion.div>
       </div>
     </section>

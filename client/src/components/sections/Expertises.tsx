@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { motion } from "framer-motion";
+import EnhancedExpertiseCard from "@/components/common/EnhancedExpertiseCard";
 
 export default function Expertises() {
   const { t } = useLanguage();
@@ -81,18 +82,15 @@ export default function Expertises() {
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {expertiseAreas.map((area, index) => (
-            <motion.div 
-              key={index} 
-              className="bg-white p-8 premium-shadow premium-border hover:bg-gray-50 transition-all duration-300"
-              variants={item}
-            >
-              <h3 className="text-lg font-heading font-bold text-primary mb-4">{area.title}</h3>
-              <p className="text-gray-600 text-sm">
-                {area.description}
-              </p>
-            </motion.div>
-          ))}
+{expertiseAreas.map((area, index) => (
+  <EnhancedExpertiseCard
+    key={index}
+    title={area.title}
+    description={area.description}
+    index={index}
+    // No onLearnMore here, but could add a modal or details in the future
+  />
+))}
         </motion.div>
       </div>
     </section>

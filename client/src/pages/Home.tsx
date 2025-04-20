@@ -10,8 +10,14 @@ import Contact from "@/components/sections/Contact";
 import CookieConsent from "@/components/common/CookieConsent";
 import ScrollToTopButton from "@/components/common/ScrollToTopButton";
 import { AnimatePresence } from "framer-motion";
+import EnhancedPressSection from "@/components/sections/EnhancedPressSection";
+import IntroSplash from "@/components/sections/IntroSplash";
+
+
+import { useState } from 'react';
 
 export default function Home() {
+  const [showSplash, setShowSplash] = useState(true);
   const aboutRef = useRef<HTMLDivElement>(null);
   const expertisesRef = useRef<HTMLDivElement>(null);
   const pressRef = useRef<HTMLDivElement>(null);
@@ -53,6 +59,9 @@ export default function Home() {
     }
   }, []);
 
+  if (showSplash) {
+    return <IntroSplash onEnter={() => setShowSplash(false)} />;
+  }
   return (
     <AnimatePresence>
       <div className="min-h-screen">

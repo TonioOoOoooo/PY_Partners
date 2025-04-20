@@ -1,6 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://cdn.jsdelivr.net/npm/neue-haas-grotesk-text@1.0.0/stylesheet.css');
+
+@font-face {
+  font-family: 'Neue Haas Grotesk Text Pro';
+  src: url('/fonts/Neue Haas Grotesk Text Pro.woff2') format('woff2'),
+       url('/fonts/Neue Haas Grotesk Text Pro.woff') format('woff'),
+       url('/fonts/Neue Haas Grotesk Text Pro.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
@@ -8,311 +16,434 @@
 
 @layer base {
   :root {
-    /* Variables unifiées - supprimer les doublons */
+    /* Main colors with subtle refinements */
     --background: 0 0% 100%;
-    --foreground: 0 0% 10%; /* Plus foncé pour meilleur contraste */
+    --foreground: 220 13% 10%; /* Richer black with subtle blue undertone */
     
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card-foreground: 220 13% 10%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover-foreground: 220 13% 10%;
     
-    --primary: 0 0% 10%; /* Noir plus profond pour éléments principaux */
+    --primary: 220 13% 10%; /* Consistent with foreground */
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 0 0% 80%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 45 20% 92%; /* Warm off-white with a touch of gold */
+    --secondary-foreground: 220 13% 10%;
     
-    --accent: 0 0% 15%;
+    --accent: 220 35% 15%;
     --accent-foreground: 0 0% 100%;
     
     --muted: 0 0% 95%;
-    --muted-foreground: 0 0% 50%;
+    --muted-foreground: 220 10% 40%;
     
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 10%;
+    --border: 220 13% 90%;
+    --input: 220 13% 90%;
+    --ring: 220 13% 10%;
     
-    --radius: 0.25rem;
+    --radius: 0.125rem; /* Reduced radius for a more distinguished look */
   }
 
-  * {
-    @apply border-border;
+  /* Typography setup for a premium experience */
+  html {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Neue Haas Grotesk Text Pro', sans-serif;
-  }
-
-  .font-heading {
-    font-family: 'Neue Haas Grotesk Text Pro', sans-serif;
-    font-weight: 600;
+    font-family: 'Neue Haas Grotesk Text Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
     letter-spacing: -0.01em;
   }
 
-  .font-body {
+  /* Precise typographic hierarchies */
+  h1, h2, h3, h4, h5, h6 {
     font-family: 'Neue Haas Grotesk Text Pro', sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+  }
+
+  h5 {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+
+  h6 {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  p {
+    margin-bottom: 1.5em;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Improved blockquote styling for testimonials */
+  blockquote {
+    font-family: 'Neue Haas Grotesk Text Pro', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    border-left: 3px solid rgba(0, 0, 0, 0.1);
+    padding-left: 1.5rem;
+    margin-left: 0;
+    color: rgba(0, 0, 0, 0.7);
+    letter-spacing: 0.01em;
+    line-height: 1.8;
+  }
+
+  blockquote p {
+    font-size: 1.125rem;
+  }
+
+  /* Improved small text */
+  small {
+    font-size: 0.875rem;
+    letter-spacing: 0.01em;
+  }
+
+  /* Enhanced font weights for nuanced hierarchy */
+  .font-thin {
+    font-weight: 300;
+  }
+
+  .font-normal {
     font-weight: 400;
   }
 
-  .font-accent {
-    font-family: 'Neue Haas Grotesk Text Pro', sans-serif;
-    font-weight: 300;
-    letter-spacing: 0.02em;
+  .font-medium {
+    font-weight: 500;
   }
 
-.hero-bg {
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)), url('https://py-partners.com/wp-content/uploads/2025/03/shutterstock_2421949253-768x1024.jpg');
-  background-size: cover;
-  background-position: center;
+  .font-semibold {
+    font-weight: 600;
+  }
+
+  .font-bold {
+    font-weight: 700;
+  }
+
+  /* Text alignments with precise letter spacing adjustments */
+  .text-uppercase {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  .text-spaced {
+    letter-spacing: 0.05em;
+  }
+
+  .font-heading {
+    font-family: 'Neue Haas Grotesk Text Pro', Helvetica Neue, Arial, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .font-heading-light {
+    font-family: 'Neue Haas Grotesk Text Pro', Helvetica Neue, Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  /* Stylistic touches for legal typography */
+  .legal-text {
+    font-size: 0.875rem;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 1.5;
+  }
+
+  .caption {
+    font-size: 0.875rem;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+  }
 }
 
-/* Modifications pour la section Hero */
-.hero-clean {
-  background-color: white;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 0;
-}
-
-.hero-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  text-align: center;
-}
-
-.hero-logo {
-  margin-bottom: 4rem;
-}
-
-.hero-logo-text {
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: #333;
-  text-transform: uppercase;
-  margin-bottom: 0.25rem;
-}
-
-.hero-logo-subtext {
-  font-size: 1rem;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.hero-image {
-  max-width: 600px;
-  margin: 0 auto 2rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.hero-tagline {
-  font-style: italic;
-  color: #555;
-  margin-bottom: 3rem;
-  font-size: 1.25rem;
-}
-
-.hero-cta-container {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-}
-
-.hero-cta-primary {
-  background-color: #333;
-  color: white;
-  padding: 0.75rem 2rem;
-  text-transform: uppercase;
-  font-weight: 500;
-  transition: background-color 0.3s;
-}
-
-.hero-cta-primary:hover {
-  background-color: #555;
-}
-
-.hero-cta-secondary {
-  background-color: transparent;
-  border: 1px solid #333;
-  color: #333;
-  padding: 0.75rem 2rem;
-  text-transform: uppercase;
-  font-weight: 500;
-  transition: background-color 0.3s;
-}
-
-.hero-cta-secondary:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-/* Style pour les images géométriques */
-.geometric-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .hero-cta-container {
-    flex-direction: column;
-    gap: 1rem;
+@layer components {
+  /* Premium button styling */
+  .premium-button {
+    @apply relative overflow-hidden transition-all duration-300 ease-out;
+    transform-origin: center;
   }
   
-  .hero-logo-text {
-    font-size: 1.75rem;
+  .premium-button::after {
+    content: '';
+    @apply absolute top-0 right-0 w-px h-0 bg-white opacity-50;
+    transition: height 0.6s cubic-bezier(0.19, 1, 0.22, 1);
   }
   
-  .hero-image {
-    max-width: 100%;
+  .premium-button:hover::after {
+    @apply h-full;
   }
-}
   
-.premium-shadow {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02),
-              0 4px 12px rgba(0, 0, 0, 0.05),
-              0 16px 32px rgba(0, 0, 0, 0.07);
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
+  .premium-button-outline {
+    @apply relative overflow-hidden transition-all duration-300 ease-out;
+    transform-origin: center;
+  }
+  
+  .premium-button-outline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-black opacity-50;
+    transition: width 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  
+  .premium-button-outline:hover::after {
+    @apply w-full;
+  }
 
-.premium-shadow:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06),
-              0 16px 40px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
-}
+  /* Refined shadow that's more subtle and premium */
+  .premium-shadow {
+    box-shadow: 
+      0 1px 2px rgba(0, 0, 0, 0.01),
+      0 4px 8px rgba(0, 0, 0, 0.04),
+      0 12px 24px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  
+  .premium-shadow:hover {
+    box-shadow: 
+      0 4px 8px rgba(0, 0, 0, 0.03),
+      0 12px 24px rgba(0, 0, 0, 0.05),
+      0 24px 48px rgba(0, 0, 0, 0.07);
+  }
 
-/* Améliorations typographiques */
-h1 {
-  font-family: 'Neue Haas Grotesk Text Pro', sans-serif;
-  letter-spacing: -0.02em;
-}
+  /* Custom border with refined thickness */
+  .premium-border {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
 
-p {
-  font-family: 'Neue Haas Grotesk Text Pro', sans-serif;
-}
+  /* Enhanced card styling */
+  .premium-card {
+    @apply bg-white premium-shadow premium-border p-8 transition-all duration-500;
+    transform: translateY(0);
+  }
+  
+  .premium-card:hover {
+    transform: translateY(-5px);
+  }
 
-/* Animation subtile pour les liens et boutons */
-button {
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-button:hover {
-  transform: translateY(-1px);
-}
-
-/* Améliorations de l'espacement des lettres pour les textes uppercase */
-.uppercase {
-  letter-spacing: 0.08em;
-}
-
+  /* Elegant link styling with subtle underline effect */
+  .premium-link {
+    @apply relative inline-block text-primary;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .premium-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-primary;
+    transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  
+  .premium-link:hover::after {
+    @apply w-full;
+  }
+  
+  /* Navigation link refined styling */
+  .nav-link {
+    @apply relative font-medium tracking-wide;
+    transition: color 0.3s ease;
+  }
+  
   .nav-link::after {
     content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    background: hsl(var(--secondary));
-    transition: width 0.3s;
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-secondary;
+    transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+  
+  /* Section heading with elegant line decoration */
+  .section-heading {
+    @apply font-heading text-3xl md:text-4xl text-primary font-bold mb-8 relative pb-4;
+  }
+  
+  .section-heading::after {
+    content: '';
+    @apply absolute left-0 bottom-0 w-16 h-px bg-secondary;
+  }
+  
+  .section-heading.centered {
+    @apply text-center;
+  }
+  
+  .section-heading.centered::after {
+    @apply left-1/2 transform -translate-x-1/2;
   }
 
-  .nav-link:hover::after {
-    width: 100%;
+  /* Sophisticated quote styling for testimonials */
+  .premium-quote {
+    @apply relative italic pl-6 py-2 font-heading-light text-lg;
   }
-
-  .active.nav-link::after {
-    width: 100%;
+  
+  .premium-quote::before {
+    content: '"';
+    @apply absolute left-0 top-0 text-3xl text-secondary font-serif;
   }
-
+  
+  /* Enhanced expertise card with subtle hover effect */
+  .expertise-card {
+    @apply bg-white premium-shadow p-8 transition-all duration-500;
+    transform: translateY(0);
+  }
+  
   .expertise-card:hover {
+    @apply border-l-4 border-secondary;
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px -5px rgba(15, 28, 63, 0.1), 0 10px 10px -5px rgba(15, 28, 63, 0.04);
   }
+}
 
-  /* Nouvelles règles pour harmoniser les couleurs */
-  .bg-black, button.bg-black {
-    background-color: hsl(0, 0%, 20%) !important;
+/* Animation utility classes */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
   }
-
-  .text-black {
-    color: hsl(0, 0%, 20%) !important;
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
   }
-
-  .border-black {
-    border-color: hsl(0, 0%, 20%) !important;
+  
+  .animate-slide-left {
+    animation: slideLeft 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
   }
-
-  .hover\:bg-black:hover {
-    background-color: hsl(0, 0%, 25%) !important;
+  
+  .animate-slide-right {
+    animation: slideRight 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
   }
-
-  /* Section presse - harmonisation des couleurs */
-  .bg-gray-600 {
-    background-color: hsl(0, 0%, 30%) !important;
+  
+  .animate-scale {
+    animation: scale 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
   }
-
-  .bg-gray-500 {
-    background-color: hsl(0, 0%, 35%) !important;
+  
+  .animation-delay-100 {
+    animation-delay: 100ms;
   }
-
-  /* Retirer le filtre sur les photos */
-  .relative.h-\[400px\] img {
-    filter: none !important;
+  
+  .animation-delay-200 {
+    animation-delay: 200ms;
   }
-
-/* Pour les italiques, utiliser une graisse légèrement plus fine */
-.italic {
-  font-weight: 300;
+  
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
 }
 
-/* Couleurs ajustées pour meilleur contraste */
-.text-gray-900 {
-  color: #1a1a1a; /* Noir plus profond */
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.bg-gray-900 {
-  background-color: #1a1a1a; /* Noir plus profond */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.border-gray-900 {
-  border-color: #1a1a1a; /* Noir plus profond */
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-/* Transition d'image subtile */
-img {
-  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-img:hover {
-  filter: brightness(1.05);
+@keyframes scale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-/* Personnalisation pour les boutons premium */
-button.premium-shadow {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 
-              0 4px 8px rgba(0, 0, 0, 0.05);
+/* Custom scroll styling for a premium feel */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-button.premium-shadow:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 
-              0 8px 16px rgba(0, 0, 0, 0.08);
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-/* Améliorer la flèche de défilement */
-.animate-bounce svg {
-  transition: all 0.3s ease;
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
 }
 
-.animate-bounce:hover svg {
-  transform: translateY(2px);
-  color: #1a1a1a;
-}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
 }

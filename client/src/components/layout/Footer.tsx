@@ -118,6 +118,9 @@ export default function Footer({ onNavClick }: FooterProps) {
         
         <div className="mt-14 pt-8 border-t border-gray-800 text-center text-gray-500 text-xs">
           <p>{t('footer.copyright')}</p>
+          <div className="mt-2 legal-text">
+            Fonts made from <a href="http://www.onlinewebfonts.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Web Fonts</a> is licensed by CC BY 4.0
+          </div>
         </div>
       </div>
     </footer>

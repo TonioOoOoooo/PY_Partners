@@ -2,6 +2,7 @@ import { Switch, Route } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
 import Home from "@/pages/Home";
 import NotFound from "@/pages/not-found";
+import SmoothScroll from "@/components/common/SmoothScroll";
 
 function Router() {
   return (
@@ -14,10 +15,10 @@ function Router() {
 
 function App() {
   return (
-    <>
+    <SmoothScroll>
       <Router />
       <Toaster />
-    </>
+    </SmoothScroll>
   );
 }
 
