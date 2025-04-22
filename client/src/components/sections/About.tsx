@@ -4,8 +4,8 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { motion } from "framer-motion";
 
 // Import direct des images
-import serafineImage from '@/assets/serafine-poyer-1.jpg';
-import virgileImage from '@/assets/VPU-Photo-CV-BW.png';
+import serafineImage from '@/assets/Serafine.png';
+import virgileImage from '@/assets/Virgile.png';
 
 export default function About() {
   const { t } = useLanguage();
