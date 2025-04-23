@@ -1,54 +1,55 @@
-@import url('https://cdn.jsdelivr.net/npm/neue-haas-grotesk-text@1.0.0/stylesheet.css');
+/* Supprimez l'ancien import CDN si vous l'aviez ici */
 
+/* Déclaration des polices auto-hébergées */
 @font-face {
   font-family: 'Neue Haas Grotesk Text Pro';
-  src: url('/fonts/Neue Haas Grotesk Text Pro.woff2') format('woff2'),
-       url('/fonts/Neue Haas Grotesk Text Pro.woff') format('woff'),
-       url('/fonts/Neue Haas Grotesk Text Pro.ttf') format('truetype');
-  font-weight: 400;
+  src: url('/fonts/NeueHaasGroteskTextPro-Regular.woff2') format('woff2'),
+       url('/fonts/NeueHaasGroteskTextPro-Regular.woff') format('woff');
+  font-weight: 400; /* Regular/Normal */
   font-style: normal;
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Neue Haas Grotesk Text Pro';
+  src: url('/fonts/NeueHaasGroteskTextPro-Bold.woff2') format('woff2'),
+       url('/fonts/NeueHaasGroteskTextPro-Bold.woff') format('woff');
+  font-weight: 700; /* Bold */
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Initialisation de Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Styles de base et personnalisations */
 @layer base {
   :root {
-    /* Main colors with subtle refinements */
+    /* Vos variables --background, --foreground, etc. ici */
     --background: 0 0% 100%;
-    --foreground: 220 13% 10%; /* Richer black with subtle blue undertone */
-    
+    --foreground: 220 13% 10%;
     --card: 0 0% 100%;
     --card-foreground: 220 13% 10%;
-    
     --popover: 0 0% 100%;
     --popover-foreground: 220 13% 10%;
-    
-    --primary: 220 13% 10%; /* Consistent with foreground */
+    --primary: 220 13% 10%;
     --primary-foreground: 0 0% 100%;
-    
-    --secondary: 45 20% 92%; /* Warm off-white with a touch of gold */
+    --secondary: 45 20% 92%;
     --secondary-foreground: 220 13% 10%;
-    
     --accent: 220 35% 15%;
     --accent-foreground: 0 0% 100%;
-    
     --muted: 0 0% 95%;
     --muted-foreground: 220 10% 40%;
-    
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    
     --border: 220 13% 90%;
     --input: 220 13% 90%;
     --ring: 220 13% 10%;
-    
-    --radius: 0.125rem; /* Reduced radius for a more distinguished look */
+    --radius: 0.125rem;
   }
 
-  /* Typography setup for a premium experience */
   html {
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
@@ -58,15 +59,19 @@
 
   body {
     @apply bg-background text-foreground;
+    /* Applique la police par défaut avec le poids 400 */
     font-family: 'Neue Haas Grotesk Text Pro', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
     line-height: 1.6;
     letter-spacing: -0.01em;
   }
 
-  /* Precise typographic hierarchies */
+  /* Hiérarchie typographique */
   h1, h2, h3, h4, h5, h6 {
+    /* Applique la police aux titres */
     font-family: 'Neue Haas Grotesk Text Pro', sans-serif;
+    /* ATTENTION: font-weight 600 n'est pas fourni. Le navigateur utilisera 400 ou 700. */
+    /* Si vous voulez Bold par défaut pour les titres, mettez 700. */
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: -0.01em;
@@ -75,35 +80,36 @@
   h1 {
     font-size: 2.5rem;
     letter-spacing: -0.03em;
+    /* OK: font-weight 700 est fourni */
     font-weight: 700;
   }
 
   h2 {
     font-size: 2rem;
     letter-spacing: -0.02em;
-    font-weight: 600;
+    font-weight: 600; /* Non fourni */
   }
 
   h3 {
     font-size: 1.5rem;
     letter-spacing: -0.015em;
-    font-weight: 600;
+    font-weight: 600; /* Non fourni */
   }
 
   h4 {
     font-size: 1.25rem;
     letter-spacing: -0.01em;
-    font-weight: 600;
+    font-weight: 600; /* Non fourni */
   }
 
   h5 {
     font-size: 1.125rem;
-    font-weight: 600;
+    font-weight: 600; /* Non fourni */
   }
 
   h6 {
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 600; /* Non fourni */
     text-transform: uppercase;
     letter-spacing: 0.03em;
   }
@@ -114,10 +120,9 @@
     line-height: 1.6;
   }
 
-  /* Improved blockquote styling for testimonials */
   blockquote {
     font-family: 'Neue Haas Grotesk Text Pro', sans-serif;
-    font-weight: 300;
+    font-weight: 300; /* Non fourni */
     font-style: italic;
     border-left: 3px solid rgba(0, 0, 0, 0.1);
     padding-left: 1.5rem;
@@ -131,58 +136,45 @@
     font-size: 1.125rem;
   }
 
-  /* Improved small text */
   small {
     font-size: 0.875rem;
     letter-spacing: 0.01em;
   }
 
-  /* Enhanced font weights for nuanced hierarchy */
-  .font-thin {
-    font-weight: 300;
-  }
+  /* Mappage des poids Tailwind aux poids disponibles */
+  /* Note: Seuls 400 et 700 sont réellement chargés */
+  .font-thin { font-weight: 300; } /* Non fourni */
+  .font-normal { font-weight: 400; } /* OK */
+  .font-medium { font-weight: 500; } /* Non fourni */
+  .font-semibold { font-weight: 600; } /* Non fourni */
+  .font-bold { font-weight: 700; } /* OK */
+  /* .font-extrabold, .font-black etc. ne sont pas fournis non plus */
 
-  .font-normal {
-    font-weight: 400;
-  }
-
-  .font-medium {
-    font-weight: 500;
-  }
-
-  .font-semibold {
-    font-weight: 600;
-  }
-
-  .font-bold {
-    font-weight: 700;
-  }
-
-  /* Text alignments with precise letter spacing adjustments */
   .text-uppercase {
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    font-weight: 500;
+    font-weight: 500; /* Non fourni */
   }
 
   .text-spaced {
     letter-spacing: 0.05em;
   }
 
+  /* Assurez-vous que font-heading utilise la bonne famille */
+  /* Le poids 600 ici sera approximé par le navigateur */
   .font-heading {
     font-family: 'Neue Haas Grotesk Text Pro', Helvetica Neue, Arial, sans-serif;
-    font-weight: 600;
+    font-weight: 600; /* Non fourni */
     letter-spacing: -0.01em;
     line-height: 1.2;
   }
 
   .font-heading-light {
     font-family: 'Neue Haas Grotesk Text Pro', Helvetica Neue, Arial, sans-serif;
-    font-weight: 400;
+    font-weight: 400; /* OK */
     letter-spacing: -0.01em;
   }
 
-  /* Stylistic touches for legal typography */
   .legal-text {
     font-size: 0.875rem;
     color: rgba(0, 0, 0, 0.6);
@@ -192,258 +184,185 @@
   .caption {
     font-size: 0.875rem;
     color: rgba(0, 0, 0, 0.6);
-    font-weight: 500;
+    font-weight: 500; /* Non fourni */
   }
 }
 
+/* Couche composants (vos styles premium-button, etc.) */
 @layer components {
-  /* Premium button styling */
+  /* ... vos styles .premium-button, .premium-shadow, etc. ici ... */
+  /* Aucun changement nécessaire ici a priori */
   .premium-button {
     @apply relative overflow-hidden transition-all duration-300 ease-out;
     transform-origin: center;
   }
-  
+
   .premium-button::after {
     content: '';
     @apply absolute top-0 right-0 w-px h-0 bg-white opacity-50;
     transition: height 0.6s cubic-bezier(0.19, 1, 0.22, 1);
   }
-  
+
   .premium-button:hover::after {
     @apply h-full;
   }
-  
+
   .premium-button-outline {
     @apply relative overflow-hidden transition-all duration-300 ease-out;
     transform-origin: center;
   }
-  
+
   .premium-button-outline::after {
     content: '';
     @apply absolute bottom-0 left-0 w-0 h-px bg-black opacity-50;
     transition: width 0.6s cubic-bezier(0.19, 1, 0.22, 1);
   }
-  
+
   .premium-button-outline:hover::after {
     @apply w-full;
   }
 
-  /* Refined shadow that's more subtle and premium */
   .premium-shadow {
-    box-shadow: 
+    box-shadow:
       0 1px 2px rgba(0, 0, 0, 0.01),
       0 4px 8px rgba(0, 0, 0, 0.04),
       0 12px 24px rgba(0, 0, 0, 0.06);
     transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
   }
-  
+
   .premium-shadow:hover {
-    box-shadow: 
+    box-shadow:
       0 4px 8px rgba(0, 0, 0, 0.03),
       0 12px 24px rgba(0, 0, 0, 0.05),
       0 24px 48px rgba(0, 0, 0, 0.07);
   }
 
-  /* Custom border with refined thickness */
   .premium-border {
     border: 1px solid rgba(0, 0, 0, 0.05);
   }
 
-  /* Enhanced card styling */
   .premium-card {
     @apply bg-white premium-shadow premium-border p-8 transition-all duration-500;
     transform: translateY(0);
   }
-  
+
   .premium-card:hover {
     transform: translateY(-5px);
   }
 
-  /* Elegant link styling with subtle underline effect */
   .premium-link {
     @apply relative inline-block text-primary;
     text-decoration: none;
     transition: color 0.3s ease;
   }
-  
+
   .premium-link::after {
     content: '';
     @apply absolute bottom-0 left-0 w-0 h-px bg-primary;
     transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1);
   }
-  
+
   .premium-link:hover::after {
     @apply w-full;
   }
-  
-  /* Navigation link refined styling */
+
   .nav-link {
-    @apply relative font-medium tracking-wide;
+    @apply relative font-medium tracking-wide; /* Utilise 500 non fourni */
     transition: color 0.3s ease;
   }
-  
+
   .nav-link::after {
     content: '';
     @apply absolute bottom-0 left-0 w-0 h-0.5 bg-secondary;
     transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1);
   }
-  
+
   .nav-link:hover::after,
   .nav-link.active::after {
     @apply w-full;
   }
-  
-  /* Section heading with elegant line decoration */
+
   .section-heading {
+    /* Utilise .font-heading (600 non fourni) et font-bold (700 OK) */
+    /* Le 700 devrait prendre le dessus ici */
     @apply font-heading text-3xl md:text-4xl text-primary font-bold mb-8 relative pb-4;
   }
-  
+
   .section-heading::after {
     content: '';
     @apply absolute left-0 bottom-0 w-16 h-px bg-secondary;
   }
-  
+
   .section-heading.centered {
     @apply text-center;
   }
-  
+
   .section-heading.centered::after {
     @apply left-1/2 transform -translate-x-1/2;
   }
 
-  /* Sophisticated quote styling for testimonials */
   .premium-quote {
+     /* Utilise font-heading-light (400 OK) */
     @apply relative italic pl-6 py-2 font-heading-light text-lg;
   }
-  
+
   .premium-quote::before {
     content: '"';
-    @apply absolute left-0 top-0 text-3xl text-secondary font-serif;
+    @apply absolute left-0 top-0 text-3xl text-secondary font-serif; /* Assurez-vous que 'font-serif' est défini ou utilisez une police système */
   }
-  
-  /* Enhanced expertise card with subtle hover effect */
+
   .expertise-card {
     @apply bg-white premium-shadow p-8 transition-all duration-500;
     transform: translateY(0);
   }
-  
+
   .expertise-card:hover {
     @apply border-l-4 border-secondary;
     transform: translateY(-5px);
   }
+
 }
 
-/* Animation utility classes */
+/* Couche utilitaires (vos animations, etc.) */
 @layer utilities {
-  .animate-fade-in {
+  /* ... vos classes .animate-*, .animation-delay-* ici ... */
+  /* Aucun changement nécessaire ici a priori */
+    .animate-fade-in {
     animation: fadeIn 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
   }
-  
+
   .animate-slide-up {
     animation: slideUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
   }
-  
+
   .animate-slide-left {
     animation: slideLeft 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
   }
-  
+
   .animate-slide-right {
     animation: slideRight 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
   }
-  
+
   .animate-scale {
     animation: scale 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
   }
-  
-  .animation-delay-100 {
-    animation-delay: 100ms;
-  }
-  
-  .animation-delay-200 {
-    animation-delay: 200ms;
-  }
-  
-  .animation-delay-300 {
-    animation-delay: 300ms;
-  }
-  
-  .animation-delay-400 {
-    animation-delay: 400ms;
-  }
-  
-  .animation-delay-500 {
-    animation-delay: 500ms;
-  }
+
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
 }
 
-/* Animation keyframes */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+/* Keyframes pour les animations */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideLeft { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes slideRight { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes scale { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideLeft {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideRight {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes scale {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Custom scroll styling for a premium feel */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, 0.3);
-}
+/* Styles de la barre de défilement */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background-color: rgba(0, 0, 0, 0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background-color: rgba(0, 0, 0, 0.3); }
