@@ -85,7 +85,7 @@ export default function IntroSplash({ onEnter }: IntroSplashProps) {
           {/* Bouton placé en bas de l'écran pour assurer sa visibilité et accessibilité */}
           <div className="w-full flex justify-center mb-4 mt-2">
             <motion.button
-              className="w-[90%] sm:w-auto px-6 py-3 sm:px-8 sm:py-4 bg-black text-white rounded-full shadow-lg text-base sm:text-lg tracking-wide font-medium uppercase focus:outline-none focus-visible:ring-2 focus-visible:ring-black transition hover:bg-gray-900"
+              className="w-[90%] sm:w-auto px-6 py-3 sm:px-8 sm:py-4 bg-gray-800 hover:bg-gray-700 text-white font-medium uppercase tracking-wide text-sm overflow-hidden relative focus:outline-none focus-visible:ring-2 focus-visible:ring-black transition"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               onClick={onEnter}

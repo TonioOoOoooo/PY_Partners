@@ -11,7 +11,7 @@ export const translations = {
     title: 'PY PARTNERS',
     subtitle: 'PARIS',
     tagline: 'We master the details. So, you don\'t have to.',
-    description: 'Cabinet d\'avocats spécialisé en droit social au service des Entreprises et Dirigeants.',
+    description: 'Cabinet d\'avocats spécialisé en droit social aux côtés des Entreprises et Dirigeants.',
     cta1: 'Découvrir nos expertises',
     cta2: 'Nous contacter'
   },
@@ -175,7 +175,7 @@ export const translations = {
     title: 'PY PARTNERS',
     subtitle: 'PARIS',
     tagline: 'We master the details. So, you don\'t have to.',
-    description: 'Labor law firm dedicated to serving Companies and Executives.',
+    description: 'Labor law firm dedicated to supporting Companies and Executives.',
     cta1: 'Discover our expertise',
     cta2: 'Contact us'
   },
