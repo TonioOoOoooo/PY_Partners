@@ -4,13 +4,20 @@ import { motion } from 'framer-motion';
 
 export default function RevisitConsentButton() {
   const { t } = useLanguage();
-  const [open, setOpen] = useState(false);
 
   const showCookieSettings = () => {
-    // Get the CookieConsent component to show again by removing the localStorage item
-    localStorage.removeItem('cookieConsent');
-    // Reload the page to make the CookieConsent show up
-    window.location.reload();
+    try {
+      // Ajout d'un marqueur pour indiquer que la suppression est intentionnelle
+      sessionStorage.setItem('cookieResetIntentional', 'true');
+      // Suppression du consentement
+      localStorage.removeItem('cookieConsent');
+      // Rechargement de la page
+      window.location.reload();
+    } catch (error) {
+      console.error("Erreur lors de la réinitialisation des préférences:", error);
+      // Fallback en cas d'erreur
+      window.location.reload();
+    }
   };
 
   return (

@@ -154,13 +154,21 @@ export const translations = {
       contact: 'Contact',
       copyright: '© 2025 PY Partners. Tous droits réservés.'
     },
-    cookies: {
-      title: 'Politique de cookies',
-      description: 'Ce site utilise des cookies pour améliorer votre expérience. En poursuivant votre navigation, vous acceptez notre utilisation des cookies.',
-      accept: 'Accepter tous les cookies',
-      customize: 'Personnaliser',
-      revisit: 'Revoir les paramètres de cookies'
-    },
+cookies: {
+  title: 'Politique de cookies',
+  description: 'Ce site utilise des cookies pour améliorer votre expérience. En poursuivant votre navigation, vous acceptez notre utilisation des cookies.',
+  accept: 'Accepter tous les cookies',
+  customize: 'Personnaliser',
+  required: 'Obligatoire',
+  savePreferences: 'Enregistrer mes préférences',
+  cancel: 'Annuler',
+  categories: {
+    necessary: 'Cookies nécessaires',
+    functional: 'Cookies fonctionnels',
+    analytics: 'Cookies analytiques',
+    marketing: 'Cookies marketing'
+  }
+},
     language: 'Français'
   },
   en: {
@@ -319,12 +327,20 @@ export const translations = {
       copyright: '© 2025 PY Partners. All rights reserved.'
     },
     cookies: {
-      title: 'Cookie policy',
-      description: 'This site uses cookies to improve your experience. By continuing to browse, you accept our use of cookies.',
-      accept: 'Accept all cookies',
-      customize: 'Customize',
-      revisit: 'Review cookie settings'
-    },
+  title: 'Cookie Policy',
+  description: 'This site uses cookies to improve your experience. By continuing to browse, you accept our use of cookies.',
+  accept: 'Accept all cookies',
+  customize: 'Customize',
+  required: 'Required',
+  savePreferences: 'Save my preferences',
+  cancel: 'Cancel',
+  categories: {
+    necessary: 'Necessary cookies',
+    functional: 'Functional cookies',
+    analytics: 'Analytics cookies',
+    marketing: 'Marketing cookies'
+  }
+},
     language: 'English'
   }
 };
