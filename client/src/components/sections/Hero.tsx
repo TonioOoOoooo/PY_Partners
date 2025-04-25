@@ -55,7 +55,7 @@ export default function EnhancedHero({ onDiscoverClick, onContactClick }: Enhanc
 
           {/* === REMPLACÉ : Logo PNG animé === */}
           <motion.div
-            className="mb-16" // Marge en dessous du logo
+            className="mb-12" // Marge légèrement réduite pour équilibrer
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -68,25 +68,25 @@ export default function EnhancedHero({ onDiscoverClick, onContactClick }: Enhanc
           </motion.div>
           {/* === FIN REMPLACEMENT === */}
 
-          {/* Tagline */}
+          {/* Tagline (mise en plus petite taille) */}
           <motion.p
-            className="text-gray-700 text-lg md:text-xl italic mb-6 font-light"
+            className="text-gray-700 text-base md:text-lg italic mb-6 font-light"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
             {t('hero.tagline')}
           </motion.p>
 
-          {/* Description */}
-          <motion.p
-            className="text-gray-600 mb-12 max-w-2xl mx-auto font-normal"
+          {/* Description - Titre principal mis en valeur mais moins gros */}
+          <motion.h2
+            className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-800 mb-12 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             {t('hero.description')}
-          </motion.p>
+          </motion.h2>
 
           {/* Boutons */}
           <motion.div
