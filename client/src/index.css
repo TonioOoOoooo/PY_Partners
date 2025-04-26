@@ -1,5 +1,3 @@
-/* Supprimez l'ancien import CDN si vous l'aviez ici */
-
 /* Déclaration des polices auto-hébergées */
 @font-face {
   font-family: 'Neue Haas Grotesk Text Pro';
@@ -19,6 +17,23 @@
   font-display: swap;
 }
 
+/* Ajout de la police Display pour un aspect plus premium */
+@font-face {
+  font-family: 'Neue Haas Grotesk Display';
+  src: url('/fonts/NeueHaasGroteskDisplayPro-55Roman.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Haas Grotesk Display';
+  src: url('/fonts/NeueHaasGroteskDisplayPro-75Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Initialisation de Tailwind */
 @tailwind base;
 @tailwind components;
@@ -27,7 +42,7 @@
 /* Styles de base et personnalisations */
 @layer base {
   :root {
-    /* Vos variables --background, --foreground, etc. ici */
+    /* Variables pour les couleurs et radiuses */
     --background: 0 0% 100%;
     --foreground: 220 13% 10%;
     --card: 0 0% 100%;
@@ -48,6 +63,12 @@
     --input: 220 13% 90%;
     --ring: 220 13% 10%;
     --radius: 0.125rem;
+    
+    /* Variables premium pour la typographie */
+    --letter-spacing-tight: -0.02em;
+    --letter-spacing-normal: -0.01em;
+    --letter-spacing-wide: 0.05em;
+    --letter-spacing-wider: 0.1em;
   }
 
   html {
@@ -55,6 +76,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -69,47 +91,44 @@
   /* Hiérarchie typographique */
   h1, h2, h3, h4, h5, h6 {
     /* Applique la police aux titres */
-    font-family: 'Neue Haas Grotesk Text Pro', sans-serif;
-    /* ATTENTION: font-weight 600 n'est pas fourni. Le navigateur utilisera 400 ou 700. */
-    /* Si vous voulez Bold par défaut pour les titres, mettez 700. */
+    font-family: 'Neue Haas Grotesk Display', 'Neue Haas Grotesk Text Pro', sans-serif;
     font-weight: 600;
     line-height: 1.2;
-    letter-spacing: -0.01em;
+    letter-spacing: var(--letter-spacing-tight);
   }
 
   h1 {
     font-size: 2.5rem;
     letter-spacing: -0.03em;
-    /* OK: font-weight 700 est fourni */
     font-weight: 700;
   }
 
   h2 {
     font-size: 2rem;
     letter-spacing: -0.02em;
-    font-weight: 600; /* Non fourni */
+    font-weight: 600;
   }
 
   h3 {
     font-size: 1.5rem;
     letter-spacing: -0.015em;
-    font-weight: 600; /* Non fourni */
+    font-weight: 600;
   }
 
   h4 {
     font-size: 1.25rem;
     letter-spacing: -0.01em;
-    font-weight: 600; /* Non fourni */
+    font-weight: 600;
   }
 
   h5 {
     font-size: 1.125rem;
-    font-weight: 600; /* Non fourni */
+    font-weight: 600;
   }
 
   h6 {
     font-size: 1rem;
-    font-weight: 600; /* Non fourni */
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.03em;
   }
@@ -122,7 +141,7 @@
 
   blockquote {
     font-family: 'Neue Haas Grotesk Text Pro', sans-serif;
-    font-weight: 300; /* Non fourni */
+    font-weight: 300;
     font-style: italic;
     border-left: 3px solid rgba(0, 0, 0, 0.1);
     padding-left: 1.5rem;
@@ -142,36 +161,33 @@
   }
 
   /* Mappage des poids Tailwind aux poids disponibles */
-  /* Note: Seuls 400 et 700 sont réellement chargés */
-  .font-thin { font-weight: 300; } /* Non fourni */
-  .font-normal { font-weight: 400; } /* OK */
-  .font-medium { font-weight: 500; } /* Non fourni */
-  .font-semibold { font-weight: 600; } /* Non fourni */
-  .font-bold { font-weight: 700; } /* OK */
-  /* .font-extrabold, .font-black etc. ne sont pas fournis non plus */
+  .font-thin { font-weight: 300; }
+  .font-normal { font-weight: 400; }
+  .font-medium { font-weight: 500; }
+  .font-semibold { font-weight: 600; }
+  .font-bold { font-weight: 700; }
 
   .text-uppercase {
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    font-weight: 500; /* Non fourni */
+    font-weight: 500;
   }
 
   .text-spaced {
     letter-spacing: 0.05em;
   }
 
-  /* Assurez-vous que font-heading utilise la bonne famille */
-  /* Le poids 600 ici sera approximé par le navigateur */
+  /* Styles pour les titres et classes typographiques */
   .font-heading {
-    font-family: 'Neue Haas Grotesk Text Pro', Helvetica Neue, Arial, sans-serif;
-    font-weight: 600; /* Non fourni */
+    font-family: 'Neue Haas Grotesk Display', 'Neue Haas Grotesk Text Pro', Helvetica Neue, Arial, sans-serif;
+    font-weight: 600;
     letter-spacing: -0.01em;
     line-height: 1.2;
   }
 
   .font-heading-light {
-    font-family: 'Neue Haas Grotesk Text Pro', Helvetica Neue, Arial, sans-serif;
-    font-weight: 400; /* OK */
+    font-family: 'Neue Haas Grotesk Display', 'Neue Haas Grotesk Text Pro', Helvetica Neue, Arial, sans-serif;
+    font-weight: 400;
     letter-spacing: -0.01em;
   }
 
@@ -184,14 +200,43 @@
   .caption {
     font-size: 0.875rem;
     color: rgba(0, 0, 0, 0.6);
-    font-weight: 500; /* Non fourni */
+    font-weight: 500;
+  }
+  
+  /* Nouvelles classes typographiques premium */
+  .hero-title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: #1a1a1a;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+    font-weight: 400;
+    letter-spacing: var(--letter-spacing-normal);
+    color: #4a4a4a;
+  }
+
+  .premium-tagline {
+    font-family: 'Neue Haas Grotesk Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: var(--letter-spacing-normal);
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 1.125rem;
+  }
+
+  .text-precise {
+    letter-spacing: -0.02em;
+    line-height: 1.6;
   }
 }
 
-/* Couche composants (vos styles premium-button, etc.) */
+/* Couche composants */
 @layer components {
-  /* ... vos styles .premium-button, .premium-shadow, etc. ici ... */
-  /* Aucun changement nécessaire ici a priori */
+  /* Styles pour les boutons et éléments d'interface */
   .premium-button {
     @apply relative overflow-hidden transition-all duration-300 ease-out;
     transform-origin: center;
@@ -266,8 +311,9 @@
     @apply w-full;
   }
 
+  /* Classes de navigation améliorées */
   .nav-link {
-    @apply relative font-medium tracking-wide; /* Utilise 500 non fourni */
+    @apply relative font-medium tracking-wide;
     transition: color 0.3s ease;
   }
 
@@ -281,10 +327,36 @@
   .nav-link.active::after {
     @apply w-full;
   }
+  
+  .nav-link-premium {
+    position: relative;
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link-premium::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.5s cubic-bezier(0.2, 1, 0.2, 1);
+  }
+
+  .nav-link-premium:hover::after,
+  .nav-link-premium.active::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
 
   .section-heading {
-    /* Utilise .font-heading (600 non fourni) et font-bold (700 OK) */
-    /* Le 700 devrait prendre le dessus ici */
     @apply font-heading text-3xl md:text-4xl text-primary font-bold mb-8 relative pb-4;
   }
 
@@ -302,13 +374,12 @@
   }
 
   .premium-quote {
-     /* Utilise font-heading-light (400 OK) */
     @apply relative italic pl-6 py-2 font-heading-light text-lg;
   }
 
   .premium-quote::before {
     content: '"';
-    @apply absolute left-0 top-0 text-3xl text-secondary font-serif; /* Assurez-vous que 'font-serif' est défini ou utilisez une police système */
+    @apply absolute left-0 top-0 text-3xl text-secondary font-serif;
   }
 
   .expertise-card {
@@ -320,14 +391,36 @@
     @apply border-l-4 border-secondary;
     transform: translateY(-5px);
   }
+  
+  /* Animation subtile pour les boutons premium */
+  .btn-premium {
+    position: relative;
+    overflow: hidden;
+    transition: all 400ms cubic-bezier(0.2, 1, 0.2, 1);
+  }
 
+  .btn-premium:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 400ms cubic-bezier(0.2, 1, 0.2, 1);
+  }
+
+  .btn-premium:hover:after {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
 }
 
-/* Couche utilitaires (vos animations, etc.) */
+/* Couche utilitaires */
 @layer utilities {
-  /* ... vos classes .animate-*, .animation-delay-* ici ... */
-  /* Aucun changement nécessaire ici a priori */
-    .animate-fade-in {
+  .animate-fade-in {
     animation: fadeIn 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
   }
 
@@ -352,6 +445,29 @@
   .animation-delay-300 { animation-delay: 300ms; }
   .animation-delay-400 { animation-delay: 400ms; }
   .animation-delay-500 { animation-delay: 500ms; }
+  
+  /* Ajout pour les transitions de page */
+  .page-transition-enter {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .page-transition-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 800ms cubic-bezier(0, 0, 0.2, 1), transform 800ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  .page-transition-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .page-transition-exit-active {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 800ms cubic-bezier(0.4, 0, 1, 1), transform 800ms cubic-bezier(0.4, 0, 1, 1);
+  }
 }
 
 /* Keyframes pour les animations */

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { Link } from 'wouter';
 import logoImage from '@/assets/py-partners-logo.png';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface HeaderProps {
   onNavClick: {
@@ -12,7 +13,7 @@ interface HeaderProps {
   };
 }
 
-export default function Header({ onNavClick }: HeaderProps) {
+export default function PremiumHeader({ onNavClick }: HeaderProps) {
   const { t, toggleLanguage, language } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -20,7 +21,7 @@ export default function Header({ onNavClick }: HeaderProps) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
 
       // Determine active section based on scroll position
       const sections = [
@@ -58,149 +59,166 @@ export default function Header({ onNavClick }: HeaderProps) {
   };
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'premium-shadow' : ''}`}>
-      <div className="bg-white">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-3">
-            <Link href="/" className="flex items-center">
-              <img src={logoImage} alt="PY Partners Logo" className="h-12" />
-            </Link>
-            <div className="hidden md:flex items-center space-x-10">
-              <nav className="flex space-x-8 items-center">
+    <header 
+      className={`fixed w-full z-50 transition-all duration-500 ${
+        isScrolled 
+          ? 'py-3 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.05)]' 
+          : 'py-6 bg-transparent'
+      }`}
+    >
+      <div className="container mx-auto px-6 md:px-8 lg:px-16">
+        <div className="flex justify-between items-center">
+          <Link href="/" className="flex items-center z-10">
+            <img 
+              src={logoImage} 
+              alt="PY Partners Logo" 
+              className={`transition-all duration-500 ${
+                isScrolled ? 'h-8' : 'h-10'
+              }`} 
+            />
+          </Link>
+          
+          <div className="hidden md:flex items-center space-x-10">
+            <nav className="flex space-x-8 items-center">
+              {[
+                { id: 'accueil', label: t('navigation.home') },
+                { id: 'a-propos', label: t('navigation.about'), action: 'about' },
+                { id: 'expertises', label: t('navigation.expertise'), action: 'expertises' },
+                { id: 'presse', label: t('navigation.press'), action: 'press' },
+                { id: 'contact', label: t('navigation.contact'), action: 'contact' }
+              ].map((item) => (
                 <a 
-                  href="#accueil" 
-                  className={`nav-link text-primary text-sm font-medium hover:text-secondary transition-colors duration-200 ${activeSection === 'accueil' ? 'active' : ''}`}
+                  key={item.id}
+                  href={`#${item.id}`} 
+                  className={`
+                    nav-link-premium relative tracking-wide 
+                    text-xs font-medium uppercase 
+                    transition-colors duration-200
+                    ${activeSection === item.id 
+                      ? 'text-gray-900' 
+                      : 'text-gray-500 hover:text-gray-800'}
+                  `}
                   onClick={(e) => {
                     e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    setActiveSection('accueil');
+                    if (item.id === 'accueil') {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      setActiveSection('accueil');
+                    } else if (item.action) {
+                      handleNavClick(item.action as keyof typeof onNavClick, item.id);
+                    }
                   }}
                 >
-                  {t('navigation.home')}
+                  {item.label}
+                  {activeSection === item.id && (
+                    <motion.span 
+                      className="absolute -bottom-1 left-0 w-full h-px bg-black"
+                      layoutId="navbar-indicator"
+                      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                    />
+                  )}
                 </a>
-                <a 
-                  href="#a-propos" 
-                  className={`nav-link text-primary text-sm font-medium hover:text-secondary transition-colors duration-200 ${activeSection === 'a-propos' ? 'active' : ''}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick('about', 'a-propos');
-                  }}
-                >
-                  {t('navigation.about')}
-                </a>
-                <a 
-                  href="#expertises" 
-                  className={`nav-link text-primary text-sm font-medium hover:text-secondary transition-colors duration-200 ${activeSection === 'expertises' ? 'active' : ''}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick('expertises', 'expertises');
-                  }}
-                >
-                  {t('navigation.expertise')}
-                </a>
-                <a 
-                  href="#presse" 
-                  className={`nav-link text-primary text-sm font-medium hover:text-secondary transition-colors duration-200 ${activeSection === 'presse' ? 'active' : ''}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick('press', 'presse');
-                  }}
-                >
-                  {t('navigation.press')}
-                </a>
-                <a 
-                  href="#contact" 
-                  className={`nav-link text-primary text-sm font-medium hover:text-secondary transition-colors duration-200 ${activeSection === 'contact' ? 'active' : ''}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick('contact', 'contact');
-                  }}
-                >
-                  {t('navigation.contact')}
-                </a>
-              </nav>
-              <div className="flex items-center">
-                <button 
-                  className="px-3 py-1 text-xs tracking-wide uppercase border border-secondary rounded-none bg-white text-primary hover:bg-secondary/10 transition duration-200"
-                  onClick={toggleLanguage}
-                >
-                  {t('language')}
-                </button>
-              </div>
-            </div>
-            <button className="md:hidden text-primary" onClick={toggleMobileMenu}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-      {/* Mobile menu */}
-      <div className={`md:hidden bg-white premium-shadow ${mobileMenuOpen ? 'block' : 'hidden'}`}>
-        <div className="container mx-auto px-4 py-4">
-          <nav className="flex flex-col space-y-4">
-            <a 
-              href="#accueil" 
-              className="text-primary hover:text-secondary py-2 border-b border-gray-100"
-              onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                setMobileMenuOpen(false);
-                setActiveSection('accueil');
-              }}
-            >
-              {t('navigation.home')}
-            </a>
-            <a 
-              href="#a-propos" 
-              className="text-primary hover:text-secondary py-2 border-b border-gray-100"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('about', 'a-propos');
-              }}
-            >
-              {t('navigation.about')}
-            </a>
-            <a 
-              href="#expertises" 
-              className="text-primary hover:text-secondary py-2 border-b border-gray-100"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('expertises', 'expertises');
-              }}
-            >
-              {t('navigation.expertise')}
-            </a>
-            <a 
-              href="#presse" 
-              className="text-primary hover:text-secondary py-2 border-b border-gray-100"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('press', 'presse');
-              }}
-            >
-              {t('navigation.press')}
-            </a>
-            <a 
-              href="#contact" 
-              className="text-primary hover:text-secondary py-2 border-b border-gray-100"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('contact', 'contact');
-              }}
-            >
-              {t('navigation.contact')}
-            </a>
+              ))}
+            </nav>
+            
             <button 
-              className="text-left py-2 text-xs uppercase tracking-wide text-primary"
+              className="px-3 py-1 text-xs tracking-widest uppercase 
+                       border border-gray-900 bg-transparent text-gray-900 
+                       hover:bg-gray-900 hover:text-white 
+                       transition-all duration-300"
               onClick={toggleLanguage}
             >
-              {t('language')}
+              {language === 'fr' ? 'FR' : 'EN'}
             </button>
-          </nav>
+          </div>
+          
+          <button 
+            className="md:hidden flex flex-col justify-center items-center 
+                     w-10 h-10 relative z-30"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle mobile menu"
+          >
+            <span className={`
+              block w-5 h-px bg-gray-900 transition-all duration-300
+              ${mobileMenuOpen 
+                ? 'transform rotate-45 translate-y-1' 
+                : 'mb-1'
+              }
+            `}></span>
+            <span className={`
+              block w-5 h-px bg-gray-900 transition-all duration-300
+              ${mobileMenuOpen ? 'opacity-0' : 'opacity-100'}
+            `}></span>
+            <span className={`
+              block w-5 h-px bg-gray-900 transition-all duration-300
+              ${mobileMenuOpen 
+                ? 'transform -rotate-45 -translate-y-1' 
+                : 'mt-1'
+              }
+            `}></span>
+          </button>
         </div>
       </div>
+      
+      {/* Mobile menu with improved animation */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            className="fixed inset-0 bg-white z-20 flex items-center justify-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <nav className="flex flex-col items-center space-y-6 py-10">
+              {[
+                { id: 'accueil', label: t('navigation.home') },
+                { id: 'a-propos', label: t('navigation.about'), action: 'about' },
+                { id: 'expertises', label: t('navigation.expertise'), action: 'expertises' },
+                { id: 'presse', label: t('navigation.press'), action: 'press' },
+                { id: 'contact', label: t('navigation.contact'), action: 'contact' }
+              ].map((item, index) => (
+                <motion.a 
+                  key={item.id}
+                  href={`#${item.id}`} 
+                  className={`text-2xl font-medium 
+                            ${activeSection === item.id ? 'text-gray-900' : 'text-gray-500'}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 + 0.1 }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (item.id === 'accueil') {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      setActiveSection('accueil');
+                      setMobileMenuOpen(false);
+                    } else if (item.action) {
+                      handleNavClick(item.action as keyof typeof onNavClick, item.id);
+                    }
+                  }}
+                >
+                  {item.label}
+                </motion.a>
+              ))}
+              
+              <motion.button 
+                className="mt-8 px-6 py-2 text-sm tracking-wider uppercase
+                         border border-gray-900 bg-transparent text-gray-900
+                         hover:bg-gray-900 hover:text-white
+                         transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                onClick={() => {
+                  toggleLanguage();
+                  setMobileMenuOpen(false);
+                }}
+              >
+                {language === 'fr' ? 'Français' : 'English'}
+              </motion.button>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

@@ -17,7 +17,7 @@ import IntroSplash from "@/components/sections/IntroSplash";
 import { useState } from 'react';
 
 export default function Home() {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(false);
   const aboutRef = useRef<HTMLDivElement>(null);
   const expertisesRef = useRef<HTMLDivElement>(null);
   const pressRef = useRef<HTMLDivElement>(null);
