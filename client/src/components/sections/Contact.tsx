@@ -70,6 +70,13 @@ export default function Contact() {
   });
 
   const onSubmit = (data: FormValues) => {
+  // Suivi Google Analytics
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'contact_form_submission', {
+      'event_category': 'engagement',
+      'event_label': 'Contact Form'
+    });
+  }
     mutation.mutate(data);
   };
 

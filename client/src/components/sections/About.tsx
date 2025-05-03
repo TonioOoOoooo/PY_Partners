@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { motion } from "framer-motion";
+import { TeamMemberImage } from '@/components/common/SEOImage'; // Importez le composant
 
 // Import direct des images
 import serafineImage from '@/assets/Serafine.png';
@@ -82,10 +83,12 @@ export default function About() {
               variants={variants}
             >
               <div className="relative h-[400px]">
-                <img 
-                  src={partner.image} 
-                  alt={partner.name} 
-                  className="w-full h-full object-cover" 
+		{/* Remplacez l'ancienne balise img par TeamMemberImage */}
+                <TeamMemberImage 
+                  src={partner.image}
+                  name={partner.name}
+                  role={partner.role}
+                  className="w-full h-full object-cover"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-800 to-transparent py-8 px-8">
                   <h3 className="font-heading text-2xl text-white font-bold">{partner.name}</h3>

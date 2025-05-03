@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { Link } from 'wouter';
+import { LogoImage } from '@/components/common/SEOImage'; // Importez le composant
 import logoImage from '@/assets/py-partners-logo.png';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -69,12 +70,12 @@ export default function PremiumHeader({ onNavClick }: HeaderProps) {
       <div className="container mx-auto px-6 md:px-8 lg:px-16">
         <div className="flex justify-between items-center">
           <Link href="/" className="flex items-center z-10">
-            <img 
-              src={logoImage} 
-              alt="PY Partners Logo" 
+	      <LogoImage 
+              src={logoImage}
               className={`transition-all duration-500 ${
                 isScrolled ? 'h-8' : 'h-10'
-              }`} 
+              }`}
+	      priority={true}
             />
           </Link>
           

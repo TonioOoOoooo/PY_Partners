@@ -1,0 +1,13 @@
+<!-- robots.txt - Place in your public directory -->
+User-agent: *
+Allow: /
+
+# Block access to admin area
+Disallow: /admin/
+
+# Directives for images
+User-agent: Googlebot-Image
+Allow: /assets/images/
+
+# Sitemap location
+Sitemap: https://py-partners.com/sitemap.xml
