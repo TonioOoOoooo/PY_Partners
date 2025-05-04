@@ -1,4 +1,3 @@
-<!-- robots.txt - Place in your public directory -->
 User-agent: *
 Allow: /
 
@@ -7,7 +6,7 @@ Disallow: /admin/
 
 # Directives for images
 User-agent: Googlebot-Image
-Allow: /assets/images/
+Allow: /img/
 
 # Sitemap location
 Sitemap: https://py-partners.com/sitemap.xml
