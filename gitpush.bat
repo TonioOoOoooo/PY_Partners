@@ -1,4 +1,9 @@
 @echo off
+
+rem Générer le sitemap automatiquement
+echo Generation du sitemap...
+node .\scripts\generate-sitemap.js
+
 rem Script Git pour ajouter tous les fichiers (nouveaux et modifiés)
 
 rem Afficher l'état actuel
