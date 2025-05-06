@@ -121,6 +121,9 @@ export default function Footer({ onNavClick }: FooterProps) {
           <div className="mt-2 legal-text">
             Fonts made from <a href="http://www.onlinewebfonts.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Web Fonts</a> is licensed by CC BY 4.0
           </div>
+          <div className="mt-2 legal-text">
+            Site développé par <a href="https://tomorrow-solutions.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">AI Tomorrow Solutions</a>
+          </div>
         </div>
       </div>
     </footer>
