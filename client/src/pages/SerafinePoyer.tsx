@@ -71,6 +71,7 @@ export default function SerafinePoyer() {
 
         <Header
           onNavClick={{
+            home: () => setLocation(languagePrefix),
             about: () => setLocation(`${languagePrefix}#a-propos`),
             expertises: () => setLocation(`${languagePrefix}#expertises`),
             press: () => setLocation(`${languagePrefix}#presse`),
@@ -307,7 +308,7 @@ export default function SerafinePoyer() {
 
               {/* Boutons bas de page */}
               <div className="flex flex-col md:flex-row gap-5 justify-center">
-                <Link href={`${languagePrefix}`}>
+                <Link href={languagePrefix}>
                   <a className="bg-black text-white px-8 py-4 rounded-none hover:bg-gray-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1 text-center font-medium tracking-wide">
                     {language === "fr" ? "Découvrir le cabinet" : "Discover the firm"}
                   </a>

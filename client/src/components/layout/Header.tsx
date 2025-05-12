@@ -6,12 +6,13 @@ import logoImage from '@/assets/py-partners-logo.png';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface HeaderProps {
-  onNavClick: {
-    about: () => void;
-    expertises: () => void;
-    press: () => void;
-    contact: () => void;
-  };
+	onNavClick: {
+	  home?: () => void; // ← Ajouté (optionnel pour rétrocompatibilité)
+	  about: () => void;
+	  expertises: () => void;
+	  press: () => void;
+	  contact: () => void;
+	};
 }
 
 export default function PremiumHeader({ onNavClick }: HeaderProps) {
@@ -102,7 +103,13 @@ export default function PremiumHeader({ onNavClick }: HeaderProps) {
                   onClick={(e) => {
                     e.preventDefault();
                     if (item.id === 'accueil') {
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      if (onNavClick.home) {
+                        // Si home handler est fourni, l'utiliser (pour rediriger vers la home page)
+                        onNavClick.home();
+                      } else {
+                        // Sinon, comportement par défaut (scroll vers le haut)
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
                       setActiveSection('accueil');
                     } else if (item.action) {
                       handleNavClick(item.action as keyof typeof onNavClick, item.id);
@@ -189,7 +196,13 @@ export default function PremiumHeader({ onNavClick }: HeaderProps) {
                   onClick={(e) => {
                     e.preventDefault();
                     if (item.id === 'accueil') {
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      if (onNavClick.home) {
+                        // Si home handler est fourni, l'utiliser (pour rediriger vers la home page)
+                        onNavClick.home();
+                      } else {
+                        // Sinon, comportement par défaut (scroll vers le haut)
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
                       setActiveSection('accueil');
                       setMobileMenuOpen(false);
                     } else if (item.action) {
