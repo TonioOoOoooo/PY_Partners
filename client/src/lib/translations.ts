@@ -5,7 +5,8 @@ export const translations = {
       about: 'À propos',
       expertise: 'Expertises',
       press: 'Presse',
-      contact: 'Contact'
+      contact: 'Contact',
+      blog: 'Blog'
     },
   hero: {
     title: 'PY PARTNERS',
@@ -170,7 +171,19 @@ cookies: {
     marketing: 'Cookies marketing'
   }
 },
-    language: 'Français'
+    language: 'Français',
+    blog: {
+      title: 'Notre Blog',
+      description: 'Découvrez nos derniers articles et actualités',
+      readMore: 'Lire l\'article',
+      backToArticles: 'Retour aux articles',
+      loading: 'Chargement des articles...',
+      loadingArticle: 'Chargement de l\'article...',
+      noArticles: 'Aucun article n\'est disponible pour le moment.',
+      articleNotFound: 'Article non trouvé',
+      errorLoading: 'Erreur lors du chargement des articles',
+      errorLoadingArticle: 'Erreur lors du chargement de l\'article'
+    }
   },
   en: {
     navigation: {
@@ -178,7 +191,8 @@ cookies: {
       about: 'About',
       expertise: 'Expertise',
       press: 'Press',
-      contact: 'Contact'
+      contact: 'Contact',
+      blog: 'Blog'
     },
   hero: {
     title: 'PY PARTNERS',
@@ -343,6 +357,18 @@ cookies: {
     marketing: 'Marketing cookies'
   }
 },
-    language: 'English'
+    language: 'English',
+    blog: {
+      title: 'Our Blog',
+      description: 'Discover our latest articles and news',
+      readMore: 'Read article',
+      backToArticles: 'Back to articles',
+      loading: 'Loading articles...',
+      loadingArticle: 'Loading article...',
+      noArticles: 'No articles available at the moment.',
+      articleNotFound: 'Article not found',
+      errorLoading: 'Error loading articles',
+      errorLoadingArticle: 'Error loading article'
+    }
   }
 };

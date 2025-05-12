@@ -10,7 +10,6 @@ interface HeaderProps {
 	  home?: () => void; // ← Ajouté (optionnel pour rétrocompatibilité)
 	  about: () => void;
 	  expertises: () => void;
-	  press: () => void;
 	  contact: () => void;
 	};
 }
@@ -56,7 +55,9 @@ export default function PremiumHeader({ onNavClick }: HeaderProps) {
 
   const handleNavClick = (section: keyof typeof onNavClick, sectionId: string) => {
     setActiveSection(sectionId);
-    onNavClick[section]();
+    if (onNavClick[section]) {
+      onNavClick[section]();
+    }
     setMobileMenuOpen(false);
   };
 
@@ -76,7 +77,6 @@ export default function PremiumHeader({ onNavClick }: HeaderProps) {
               className={`transition-all duration-500 ${
                 isScrolled ? 'h-8' : 'h-10'
               }`}
-	      priority={true}
             />
           </Link>
           
@@ -86,12 +86,12 @@ export default function PremiumHeader({ onNavClick }: HeaderProps) {
                 { id: 'accueil', label: t('navigation.home') },
                 { id: 'a-propos', label: t('navigation.about'), action: 'about' },
                 { id: 'expertises', label: t('navigation.expertise'), action: 'expertises' },
-                { id: 'presse', label: t('navigation.press'), action: 'press' },
-                { id: 'contact', label: t('navigation.contact'), action: 'contact' }
+                { id: 'contact', label: t('navigation.contact'), action: 'contact' },
+                { id: 'blog', label: t('navigation.blog'), isExternalLink: true }
               ].map((item) => (
                 <a 
                   key={item.id}
-                  href={`#${item.id}`} 
+                  href={item.isExternalLink ? `/${language}/blog` : `#${item.id}`} 
                   className={`
                     nav-link-premium relative tracking-wide 
                     text-xs font-medium uppercase 
@@ -101,6 +101,10 @@ export default function PremiumHeader({ onNavClick }: HeaderProps) {
                       : 'text-gray-500 hover:text-gray-800'}
                   `}
                   onClick={(e) => {
+                    if (item.isExternalLink) {
+                      // Ne pas prévenir le comportement par défaut pour les liens externes
+                      return;
+                    }
                     e.preventDefault();
                     if (item.id === 'accueil') {
                       if (onNavClick.home) {
@@ -182,18 +186,23 @@ export default function PremiumHeader({ onNavClick }: HeaderProps) {
                 { id: 'accueil', label: t('navigation.home') },
                 { id: 'a-propos', label: t('navigation.about'), action: 'about' },
                 { id: 'expertises', label: t('navigation.expertise'), action: 'expertises' },
-                { id: 'presse', label: t('navigation.press'), action: 'press' },
-                { id: 'contact', label: t('navigation.contact'), action: 'contact' }
+                { id: 'contact', label: t('navigation.contact'), action: 'contact' },
+                { id: 'blog', label: t('navigation.blog'), isExternalLink: true }
               ].map((item, index) => (
                 <motion.a 
                   key={item.id}
-                  href={`#${item.id}`} 
+                  href={item.isExternalLink ? `/${language}/blog` : `#${item.id}`} 
                   className={`text-2xl font-medium 
                             ${activeSection === item.id ? 'text-gray-900' : 'text-gray-500'}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 + 0.1 }}
                   onClick={(e) => {
+                    if (item.isExternalLink) {
+                      // Ne pas prévenir le comportement par défaut pour les liens externes
+                      setMobileMenuOpen(false);
+                      return;
+                    }
                     e.preventDefault();
                     if (item.id === 'accueil') {
                       if (onNavClick.home) {

@@ -4,6 +4,8 @@ import Home from "@/pages/Home";
 import NotFound from "@/pages/not-found";
 import VirgilePuyau from "@/pages/VirgilePuyau";
 import SerafinePoyer from "@/pages/SerafinePoyer";
+import Blog from "@/pages/Blog";
+import BlogArticle from "@/pages/BlogArticle";
 import SmoothScroll from "@/components/common/SmoothScroll";
 import { useEffect } from "react";
 import { useLanguageStore } from "@/lib/i18n";
@@ -33,6 +35,12 @@ function Router() {
       <Route path="/serafine-poyer" component={SerafinePoyer}/>
       <Route path="/fr/serafine-poyer" component={SerafinePoyer}/>
       <Route path="/en/serafine-poyer" component={SerafinePoyer}/>
+      <Route path="/blog" component={Blog}/>
+      <Route path="/fr/blog" component={Blog}/>
+      <Route path="/en/blog" component={Blog}/>
+      <Route path="/blog/:slug" component={BlogArticle}/>
+      <Route path="/fr/blog/:slug" component={BlogArticle}/>
+      <Route path="/en/blog/:slug" component={BlogArticle}/>
       <Route component={NotFound} />
     </Switch>
   );
