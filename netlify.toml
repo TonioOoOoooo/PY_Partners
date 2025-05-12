@@ -7,6 +7,12 @@
   to = "/index.html"
   status = 200
 
+[[redirects]]
+  from = "/index.php/contact"
+  to   = "/#contact"
+  status = 301
+  force = true
+
 # Configuration des en-têtes HTTP
 [[headers]]
   for = "/sitemap.xml"
