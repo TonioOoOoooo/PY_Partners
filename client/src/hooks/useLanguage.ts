@@ -16,18 +16,29 @@ export const useLanguage = () => {
     // Gestion des ancres
     const hasAnchor = currentPath.includes('#');
     const anchor = hasAnchor ? '#' + currentPath.split('#')[1] : '';
+    const pathWithoutAnchor = hasAnchor ? currentPath.split('#')[0] : currentPath;
     
     // Déterminer la nouvelle URL
     if (currentPath === '/' || currentPath === '/fr' || currentPath === '/en') {
       // Sur la page d'accueil
       newPath = newLanguage === 'fr' ? '/fr' : '/en';
-    } else if (currentPath.startsWith('/fr') || currentPath.startsWith('/en')) {
-      // Déjà sur une page avec préfixe de langue
-      const pathWithoutAnchor = hasAnchor ? currentPath.split('#')[0] : currentPath;
+    } else if (currentPath.startsWith('/fr/')) {
+      // Page avec préfixe français
+      const pagePath = pathWithoutAnchor.substring(3); // Enlève '/fr/'
+      newPath = newLanguage === 'fr' ? '/fr' + pagePath + anchor : '/en' + pagePath + anchor;
+    } else if (currentPath.startsWith('/en/')) {
+      // Page avec préfixe anglais
+      const pagePath = pathWithoutAnchor.substring(3); // Enlève '/en/'
+      newPath = newLanguage === 'fr' ? '/fr' + pagePath + anchor : '/en' + pagePath + anchor;
+    } else if (currentPath.startsWith('/fr')) {
+      // Page racine française
+      newPath = newLanguage === 'fr' ? '/fr' + anchor : '/en' + anchor;
+    } else if (currentPath.startsWith('/en')) {
+      // Page racine anglaise
       newPath = newLanguage === 'fr' ? '/fr' + anchor : '/en' + anchor;
     } else {
-      // Sur une autre page sans préfixe de langue
-      newPath = newLanguage === 'fr' ? '/fr' + currentPath + anchor : '/en' + currentPath + anchor;
+      // Sur une page sans préfixe de langue (comme /serafine-poyer ou /virgile-puyau)
+      newPath = newLanguage === 'fr' ? '/fr' + pathWithoutAnchor + anchor : '/en' + pathWithoutAnchor + anchor;
     }
     
     navigate(newPath);

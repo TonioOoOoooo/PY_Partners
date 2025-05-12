@@ -10,9 +10,12 @@ import serafineImage from '@/assets/Serafine.png';
 import virgileImage from '@/assets/Virgile.png';
 
 export default function About() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { reveal } = useScrollReveal();
   const sectionRef = useRef<HTMLDivElement>(null);
+  
+  // Préfixe de langue pour les URLs
+  const languagePrefix = language === 'en' ? '/en' : '';
 
   useEffect(() => {
     if (sectionRef.current) {
@@ -33,7 +36,7 @@ export default function About() {
       email: 'spoyer@py-partners.com',
       phone: '+ 33 (0) 6 64 12 55 58',
       image: serafineImage,
-      profileUrl: '/serafine-poyer',
+      profileUrl: `${languagePrefix}/serafine-poyer`,
       linkedinUrl: 'https://fr.linkedin.com/in/s%C3%A9rafine-poyer-0839a136'
     },
     {
@@ -49,7 +52,7 @@ export default function About() {
       email: 'vpuyau@py-partners.com',
       phone: '+ 33 (0) 6 03 93 33 67',
       image: virgileImage,
-      profileUrl: '/virgile-puyau',
+      profileUrl: `${languagePrefix}/virgile-puyau`,
       linkedinUrl: 'https://fr.linkedin.com/in/virgile-puyau'
     }
   ];
