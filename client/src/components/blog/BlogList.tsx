@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 import { useArticles } from '../../hooks/useArticles';
 import { useLanguage } from '../../hooks/useLanguage';
 import { BlogArticle } from '../../services/blogService';
+import { PremiumImage } from '../../components/common/PremiumImage';
 
 const BlogList: React.FC = () => {
   const { articles, loading, error } = useArticles(true);
@@ -98,10 +99,12 @@ const BlogList: React.FC = () => {
               {/* Image cliquable */}
               <Link href={getArticleUrl(article)} className="block relative overflow-hidden mb-8 bg-white">
                 {article.imageUrl ? (
-                  <img
+                  <PremiumImage
                     src={article.imageUrl}
                     alt={getLocalizedTitle(article)}
-                    className="w-full h-72 object-cover transition-all duration-700 ease-in-out group-hover:scale-105"
+                    className="w-full h-72 transition-all duration-700 ease-in-out group-hover:scale-105"
+                    filterIntensity="medium"
+                    hoverEffect="color"
                   />
                 ) : (
                   <div className="w-full h-72 bg-gray-100 flex items-center justify-center">

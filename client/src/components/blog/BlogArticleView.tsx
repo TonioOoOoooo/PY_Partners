@@ -7,6 +7,7 @@ import { Link } from 'wouter';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
+import { PremiumImage } from '../../components/common/PremiumImage';
 
 const BlogArticleView: React.FC = () => {
   const [, params] = useRoute('/fr/blog/:slug');
@@ -97,10 +98,12 @@ const BlogArticleView: React.FC = () => {
           
           {article.imageUrl && (
             <div className="mb-16">
-              <img
+              <PremiumImage
                 src={article.imageUrl}
                 alt={title}
-                className="w-full h-[500px] object-cover"
+                className="w-full h-[500px]"
+                filterIntensity="medium"
+                hoverEffect="color"
               />
             </div>
           )}

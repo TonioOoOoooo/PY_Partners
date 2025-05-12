@@ -4,6 +4,7 @@ import { usePremiumParallax, TextRevealEffect } from '@/utils/animation-utils';
 import logoImage from '@/assets/py-partners-logo.png';
 import geometricImage from '@/assets/shutterstock_2421949253-768x1024.jpg';
 import { useRef } from 'react';
+import { PremiumImage } from '@/components/common/PremiumImage';
 
 interface HeroProps {
   onDiscoverClick: () => void;
@@ -184,12 +185,13 @@ export default function Hero({ onDiscoverClick, onContactClick }: HeroProps) {
           transition={{ duration: 1, delay: 0.3 }}
         >
           {/* Image Container */}
-          <div className="relative w-full max-w-[450px] lg:max-w-[600px]"> {/* Possibly reduce max-width on mobile */}
-            <img
+          <div className="relative w-full max-w-[450px] lg:max-w-[600px]" style={{ aspectRatio: '3/4' }}> {/* Possibly reduce max-width on mobile */}
+            <PremiumImage
               src={geometricImage}
               alt="PY Partners - Design géométrique"
-              className="w-full h-auto object-cover shadow-lg rounded-md" // Added subtle rounding
-              style={{ aspectRatio: '3/4' }}
+              className="w-full h-full shadow-lg rounded-md" // Added subtle rounding
+              filterIntensity="medium"
+              hoverEffect="lighten"
             />
             {/* Overlays */}
             <div className="absolute inset-0 bg-gradient-to-tr from-black/10 to-transparent mix-blend-multiply pointer-events-none rounded-md"></div>

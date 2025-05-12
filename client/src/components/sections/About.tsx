@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { motion } from "framer-motion";
-import { TeamMemberImage } from '@/components/common/SEOImage'; // Importez le composant
+import { PremiumTeamMemberImage } from '@/components/common/PremiumImage'; // Import du nouveau composant premium
 import { Link } from 'wouter';
 
 // Import direct des images
@@ -93,11 +93,13 @@ export default function About() {
               <div className="relative h-[400px] group overflow-hidden">
                 <Link href={partner.profileUrl}>
                   <a className="block w-full h-full cursor-pointer">
-                    <TeamMemberImage 
+                    <PremiumTeamMemberImage 
                       src={partner.image}
                       name={partner.name}
                       role={partner.role}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full transition-transform duration-700 group-hover:scale-105"
+                      filterIntensity="medium"
+                      hoverEffect="color"
                     />
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent py-8 px-8">
                       <h3 className="font-heading text-2xl text-white font-bold">{partner.name}</h3>

@@ -477,6 +477,38 @@
 @keyframes slideRight { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes scale { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
+/* Styles pour les images monochromes premium */
+.premium-image {
+  filter: grayscale(90%) contrast(115%) brightness(100%);
+  transition: filter 0.7s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.premium-image:hover {
+  filter: grayscale(0%) contrast(100%) brightness(100%);
+}
+
+/* Variantes d'intensité */
+.premium-image-light {
+  filter: grayscale(70%) contrast(110%) brightness(105%);
+}
+
+.premium-image-medium {
+  filter: grayscale(90%) contrast(115%) brightness(100%);
+}
+
+.premium-image-strong {
+  filter: grayscale(100%) contrast(120%) brightness(90%);
+}
+
+/* Variantes d'effet au survol */
+.premium-image-color:hover {
+  filter: grayscale(0%) contrast(100%) brightness(100%);
+}
+
+.premium-image-lighten:hover {
+  filter: grayscale(50%) contrast(110%) brightness(110%);
+}
+
 /* Styles de la barre de défilement */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
