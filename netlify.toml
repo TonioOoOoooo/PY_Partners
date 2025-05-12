@@ -3,17 +3,16 @@
   publish = "dist/public"
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
   from = "/index.php/contact"
   to   = "/#contact"
   status = 301
   force = true
 
-# Configuration des en-têtes HTTP
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
 [[headers]]
   for = "/sitemap.xml"
   [headers.values]
