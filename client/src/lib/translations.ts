@@ -49,6 +49,7 @@ export const translations = {
     about: {
       title: 'Notre équipe',
       description: 'PY Partners est un cabinet d\'avocats indépendant, fondé par deux experts de droit social reconnus pour une approche pointue et réactive au service des Entreprises et Dirigeants.',
+      viewProfile: 'Voir le profil',
       serafine: {
         name: 'Sérafine Poyer',
         role: 'Associée fondatrice',
@@ -221,6 +222,7 @@ cookies: {
     about: {
       title: 'Our team',
       description: 'PY Partners is an independent law firm, founded by two recognized labor law experts known for their precise and responsive approach in serving Companies and Executives.',
+      viewProfile: 'View profile',
       serafine: {
         name: 'Sérafine Poyer',
         role: 'Founding Partner',

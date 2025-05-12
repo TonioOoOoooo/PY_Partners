@@ -27,7 +27,14 @@ const sections = [
   { path: '/en/#presse', priority: '0.7' },
   { path: '/#contact', priority: '0.9' },
   { path: '/fr/#contact', priority: '0.9' },
-  { path: '/en/#contact', priority: '0.9' }
+  { path: '/en/#contact', priority: '0.9' },
+  // Pages de profil des avocats
+  { path: '/virgile-puyau', priority: '0.9' },
+  { path: '/fr/virgile-puyau', priority: '0.9' },
+  { path: '/en/virgile-puyau', priority: '0.9' },
+  { path: '/serafine-poyer', priority: '0.9' },
+  { path: '/fr/serafine-poyer', priority: '0.9' },
+  { path: '/en/serafine-poyer', priority: '0.9' }
 ];
 
 // Générer le contenu du sitemap
@@ -60,6 +67,18 @@ function generateSitemap() {
         sitemap += `    <xhtml:link rel="alternate" hreflang="x-default" href="${siteUrl}/" />
 `;
       }
+    } else if (section.path.includes('virgile-puyau')) {
+      // Page de profil de Virgile Puyau
+      sitemap += `    <xhtml:link rel="alternate" hreflang="fr" href="${siteUrl}/virgile-puyau" />
+    <xhtml:link rel="alternate" hreflang="en" href="${siteUrl}/en/virgile-puyau" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="${siteUrl}/virgile-puyau" />
+`;
+    } else if (section.path.includes('serafine-poyer')) {
+      // Page de profil de Sérafine Poyer
+      sitemap += `    <xhtml:link rel="alternate" hreflang="fr" href="${siteUrl}/serafine-poyer" />
+    <xhtml:link rel="alternate" hreflang="en" href="${siteUrl}/en/serafine-poyer" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="${siteUrl}/serafine-poyer" />
+`;
     } else {
       // Pour les sections avec ancres
       const pathBase = section.path.split('#')[0]; // Obtenir la partie avant le #

@@ -3,6 +3,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { motion } from "framer-motion";
 import { TeamMemberImage } from '@/components/common/SEOImage'; // Importez le composant
+import { Link } from 'wouter';
 
 // Import direct des images
 import serafineImage from '@/assets/Serafine.png';
@@ -31,7 +32,9 @@ export default function About() {
       ],
       email: 'spoyer@py-partners.com',
       phone: '+ 33 (0) 6 64 12 55 58',
-      image: serafineImage
+      image: serafineImage,
+      profileUrl: '/serafine-poyer',
+      linkedinUrl: 'https://fr.linkedin.com/in/s%C3%A9rafine-poyer-0839a136'
     },
     {
       name: t('about.virgile.name'),
@@ -45,7 +48,9 @@ export default function About() {
       ],
       email: 'vpuyau@py-partners.com',
       phone: '+ 33 (0) 6 03 93 33 67',
-      image: virgileImage
+      image: virgileImage,
+      profileUrl: '/virgile-puyau',
+      linkedinUrl: 'https://fr.linkedin.com/in/virgile-puyau'
     }
   ];
 
@@ -82,18 +87,29 @@ export default function About() {
               viewport={{ once: true, amount: 0.2 }}
               variants={variants}
             >
-              <div className="relative h-[400px]">
-		{/* Remplacez l'ancienne balise img par TeamMemberImage */}
-                <TeamMemberImage 
-                  src={partner.image}
-                  name={partner.name}
-                  role={partner.role}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-800 to-transparent py-8 px-8">
-                  <h3 className="font-heading text-2xl text-white font-bold">{partner.name}</h3>
-                  <p className="text-gray-200 font-light tracking-wide">{partner.role}</p>
-                </div>
+              <div className="relative h-[400px] group overflow-hidden">
+                <Link href={partner.profileUrl}>
+                  <a className="block w-full h-full cursor-pointer">
+                    <TeamMemberImage 
+                      src={partner.image}
+                      name={partner.name}
+                      role={partner.role}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent py-8 px-8">
+                      <h3 className="font-heading text-2xl text-white font-bold">{partner.name}</h3>
+                      <p className="text-gray-200 font-light tracking-wide">{partner.role}</p>
+                      <div className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span className="text-white text-sm inline-flex items-center">
+                          <span>Voir le profil</span>
+                          <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </Link>
               </div>
               <div className="p-10">
                 <p className="text-gray-700 mb-8">
@@ -123,7 +139,21 @@ export default function About() {
                     >
                       {partner.email}
                     </a>
-                    <p className="text-gray-700 text-sm">{partner.phone}</p>
+                    <p className="text-gray-700 text-sm mb-3">{partner.phone}</p>
+                    
+                    <div className="flex items-center mt-2">
+                      <a 
+                        href={partner.linkedinUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="text-gray-700 hover:text-[#0A66C2] text-sm flex items-center transition-colors duration-200"
+                      >
+                        <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+                        </svg>
+                        <span>LinkedIn</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
