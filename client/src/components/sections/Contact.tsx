@@ -103,8 +103,8 @@ export default function Contact() {
               viewport={{ once: true, amount: 0.1 }}
               variants={variants}
             >
-              <h2 className="font-heading text-3xl text-primary font-bold mb-6">{t('contact.title')}</h2>
-              <p className="text-gray-600 mb-10 leading-relaxed">
+              <h2 className="font-heading text-3xl text-primary font-bold mb-8">{t('contact.title')}</h2>
+              <p className="text-gray-700 text-xl md:text-2xl leading-relaxed font-light mb-10">
                 {t('contact.description')}
               </p>
               
@@ -223,8 +223,8 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="text-primary text-sm uppercase tracking-wider font-medium mb-2">{t('contact.info.direct.label')}</h4>
-                      <p className="text-gray-600 mb-2">{t('contact.info.direct.serafine')}</p>
-                      <p className="text-gray-600">{t('contact.info.direct.virgile')}</p>
+                      <p className="text-gray-600 mb-2">{t('contact.info.direct.serafine').replace(':', '')}</p>
+                      <p className="text-gray-600">{t('contact.info.direct.virgile').replace(':', '')}</p>
                     </div>
                   </div>
                 </div>

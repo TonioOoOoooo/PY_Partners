@@ -6,6 +6,11 @@ import VirgilePuyau from "@/pages/VirgilePuyau";
 import SerafinePoyer from "@/pages/SerafinePoyer";
 import Blog from "@/pages/Blog";
 import BlogArticle from "@/pages/BlogArticle";
+import Actualites from "@/pages/Actualites";
+import ArticleActualites from "@/pages/ArticleActualites";
+import MentionsLegales from "@/pages/MentionsLegales";
+import PolitiqueConfidentialite from "@/pages/PolitiqueConfidentialite";
+import PolitiqueCookies from "@/pages/PolitiqueCookies";
 import SmoothScroll from "@/components/common/SmoothScroll";
 import { useEffect } from "react";
 import { useLanguageStore } from "@/lib/i18n";
@@ -35,12 +40,29 @@ function Router() {
       <Route path="/serafine-poyer" component={SerafinePoyer}/>
       <Route path="/fr/serafine-poyer" component={SerafinePoyer}/>
       <Route path="/en/serafine-poyer" component={SerafinePoyer}/>
+      <Route path="/actualites" component={Actualites}/>
+      <Route path="/fr/actualites" component={Actualites}/>
+      <Route path="/en/actualites" component={Actualites}/>
+      <Route path="/actualites/:slug" component={ArticleActualites}/>
+      <Route path="/fr/actualites/:slug" component={ArticleActualites}/>
+      <Route path="/en/actualites/:slug" component={ArticleActualites}/>
+      {/* Garder les anciennes routes pour la compatibilité */}
       <Route path="/blog" component={Blog}/>
       <Route path="/fr/blog" component={Blog}/>
       <Route path="/en/blog" component={Blog}/>
-      <Route path="/blog/:slug" component={BlogArticle}/>
-      <Route path="/fr/blog/:slug" component={BlogArticle}/>
-      <Route path="/en/blog/:slug" component={BlogArticle}/>
+      <Route path="/blog/:slug" component={ArticleActualites}/>
+      <Route path="/fr/blog/:slug" component={ArticleActualites}/>
+      <Route path="/en/blog/:slug" component={ArticleActualites}/>
+      {/* Pages légales */}
+      <Route path="/mentions-legales" component={MentionsLegales}/>
+      <Route path="/fr/mentions-legales" component={MentionsLegales}/>
+      <Route path="/en/mentions-legales" component={MentionsLegales}/>
+      <Route path="/politique-confidentialite" component={PolitiqueConfidentialite}/>
+      <Route path="/fr/politique-confidentialite" component={PolitiqueConfidentialite}/>
+      <Route path="/en/politique-confidentialite" component={PolitiqueConfidentialite}/>
+      <Route path="/politique-cookies" component={PolitiqueCookies}/>
+      <Route path="/fr/politique-cookies" component={PolitiqueCookies}/>
+      <Route path="/en/politique-cookies" component={PolitiqueCookies}/>
       <Route component={NotFound} />
     </Switch>
   );

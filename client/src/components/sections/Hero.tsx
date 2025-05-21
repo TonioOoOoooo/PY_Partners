@@ -12,7 +12,7 @@ interface HeroProps {
 }
 
 export default function Hero({ onDiscoverClick, onContactClick }: HeroProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Parallax effect for enhanced depth
@@ -102,60 +102,52 @@ export default function Hero({ onDiscoverClick, onContactClick }: HeroProps) {
         <motion.div
           // Removed lg:py-24 as padding is handled by container now
           // Added explicit width control: w-full lg:w-1/2
-          // Kept flex settings for alignment
-          className="w-full lg:w-1/2 flex flex-col lg:items-start items-center text-center lg:text-left"
-          style={{ y: textY }} // Evaluate if textY animation is good on mobile
+          // Modified to center content on all screen sizes
+          className="w-full lg:w-1/2 flex flex-col items-center text-center"
+          style={{ y: textY }}
           variants={containerAnimation}
           initial="hidden"
           animate="visible"
         >
-          {/* Logo */}
+          {/* Logo centered */}
           <motion.div
             variants={itemAnimation}
-            // Ensure logo is centered within its column on mobile, aligned left on desktop
-            className="mb-8 lg:mb-10 w-full flex justify-center lg:justify-start" // Added flex centering for mobile
+            className="flex flex-col items-center mb-8" // Center logo and add bottom margin
           >
-            <div className="relative">
-              <img
-                src={logoImage}
-                alt="PY Partners Logo"
-                // Reduced mobile max-width slightly
-                className="h-auto w-full max-w-[260px] sm:max-w-[300px] lg:max-w-[380px]"
-              />
-              {/* Consider adjusting line position/visibility on mobile */}
-              <div className="absolute -bottom-1 left-1/2 lg:left-0 transform -translate-x-1/2 lg:translate-x-0 w-20 h-px bg-gray-800 opacity-20"></div>
-            </div>
+            <img
+              src={logoImage}
+              alt="PY Partners Logo"
+              className="h-32 md:h-48 mb-2" // Taille encore plus grande
+            />
           </motion.div>
-
-          {/* Tagline */}
-          <motion.p
-            variants={itemAnimation}
-            // Ensure base text size is good for mobile
-            className="text-gray-700 text-lg md:text-xl lg:text-2xl italic font-light mb-6 lg:mb-8 max-w-md premium-tagline"
-          >
-            {t('hero.tagline')}
-          </motion.p>
 
           {/* Description */}
           <motion.h2
             variants={itemAnimation}
             // Ensure base text size is good for mobile
-            className="text-2xl md:text-2xl lg:text-3xl font-semibold text-gray-800 mb-10 lg:mb-12 leading-tight max-w-lg tracking-[-0.02em]"
+            className="text-2xl md:text-2xl lg:text-3xl font-semibold text-gray-800 mb-6 lg:mb-8 leading-tight max-w-lg tracking-[-0.02em]"
           >
             <span>
               {t('hero.description').replace(/^\s+/g, '')}
             </span>
           </motion.h2>
 
-          {/* CTAs */}
+          {/* Tagline */}
+          <motion.p
+            variants={itemAnimation}
+            className="text-gray-700 text-lg md:text-xl lg:text-2xl italic font-light mb-10 max-w-lg"
+          >
+            {t('hero.tagline')}
+          </motion.p>
+
+          {/* CTA Buttons */}
           <motion.div
             variants={itemAnimation}
-            // Adjusted gap, kept stacking behavior
-            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center lg:justify-start" // Ensure buttons center/fill on mobile if needed
+            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center"
           >
             <button
               onClick={onDiscoverClick}
-              // Added w-full sm:w-auto for better mobile button width control
+              // Added w-full sm:w-auto
               className="group w-full sm:w-auto px-8 py-4 bg-gray-900 text-white font-medium uppercase tracking-wide text-sm relative overflow-hidden hover:bg-gray-800 transition-colors duration-500 btn-premium"
             >
               <span className="relative z-10">{t('hero.cta1')}</span>
@@ -207,36 +199,30 @@ export default function Hero({ onDiscoverClick, onContactClick }: HeroProps) {
         animate={{ opacity: 0.7 }}
         transition={{ duration: 0.6, delay: 2 }}
       >
-         {/* ... rest of the scroll indicator code ... */}
-         <div className="flex flex-col items-center">
-          <span className="text-xs uppercase tracking-widest text-gray-400 mb-2 nav-link-premium">
-            {t('common.discover')}
-          </span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          className="relative"
+        >
+          <svg className="w-6 h-6 text-gray-400 hover:text-gray-700 transition-colors duration-300"
+               fill="none" strokeLinecap="round" strokeLinejoin="round"
+               strokeWidth="1.5" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
           <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            className="relative"
-          >
-            <svg className="w-6 h-6 text-gray-400 hover:text-gray-700 transition-colors duration-300"
-                 fill="none" strokeLinecap="round" strokeLinejoin="round"
-                 strokeWidth="1.5" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-            <motion.div
-              className="absolute -inset-4 border border-gray-200 rounded-full opacity-0"
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0, 0.2, 0]
-              }}
-              transition={{
-                repeat: Infinity,
-                duration: 2,
-                ease: "easeInOut",
-                delay: 1
-              }}
-            />
-          </motion.div>
-        </div>
+            className="absolute -inset-4 border border-gray-200 rounded-full opacity-0"
+            animate={{
+              scale: [1, 1.5, 1],
+              opacity: [0, 0.2, 0]
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 2,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
+        </motion.div>
       </motion.div>
     </section>
   );

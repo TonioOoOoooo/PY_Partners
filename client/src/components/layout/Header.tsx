@@ -10,17 +10,28 @@ interface HeaderProps {
 	  home?: () => void; // ← Ajouté (optionnel pour rétrocompatibilité)
 	  about: () => void;
 	  expertises: () => void;
+	  press?: () => void; // ← Ajouté pour la section distinctions
 	  contact: () => void;
 	};
+	currentPage?: string; // Page active (blog, mentions-legales, etc.)
 }
 
-export default function PremiumHeader({ onNavClick }: HeaderProps) {
+export default function PremiumHeader({ onNavClick, currentPage }: HeaderProps) {
   const { t, toggleLanguage, language } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('accueil');
+  
+  // Déterminer si nous sommes sur une page spécifique en dehors de la page d'accueil
+  const isOnSpecificPage = currentPage ? true : false;
 
   useEffect(() => {
+    // Si nous sommes sur une page spécifique, ne pas activer les sections de la page d'accueil
+    if (isOnSpecificPage) {
+      setActiveSection('');
+      return;
+    }
+    
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
@@ -28,7 +39,7 @@ export default function PremiumHeader({ onNavClick }: HeaderProps) {
       const sections = [
         { id: 'accueil', ref: document.getElementById('accueil') },
         { id: 'a-propos', ref: document.getElementById('a-propos') },
-        { id: 'expertises', ref: document.getElementById('expertises') },
+        { id: 'intro', ref: document.getElementById('intro') },
         { id: 'presse', ref: document.getElementById('presse') },
         { id: 'contact', ref: document.getElementById('contact') }
       ];
@@ -47,7 +58,7 @@ export default function PremiumHeader({ onNavClick }: HeaderProps) {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isOnSpecificPage]);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -85,18 +96,19 @@ export default function PremiumHeader({ onNavClick }: HeaderProps) {
               {[
                 { id: 'accueil', label: t('navigation.home') },
                 { id: 'a-propos', label: t('navigation.about'), action: 'about' },
-                { id: 'expertises', label: t('navigation.expertise'), action: 'expertises' },
-                { id: 'contact', label: t('navigation.contact'), action: 'contact' },
-                { id: 'blog', label: t('navigation.blog'), isExternalLink: true }
+                { id: 'intro', label: t('navigation.expertise'), action: 'expertises' },
+                { id: 'blog', label: t('navigation.blog'), isExternalLink: true },
+                { id: 'presse', label: t('navigation.press'), action: 'press' },
+                { id: 'contact', label: t('navigation.contact'), action: 'contact' }
               ].map((item) => (
                 <a 
                   key={item.id}
-                  href={item.isExternalLink ? `/${language}/blog` : `#${item.id}`} 
+                  href={item.isExternalLink ? `/${language}/actualites` : `#${item.id}`} 
                   className={`
                     nav-link-premium relative tracking-wide 
                     text-xs font-medium uppercase 
                     transition-colors duration-200
-                    ${activeSection === item.id 
+                    ${(activeSection === item.id) || (item.id === 'blog' && currentPage === 'blog')
                       ? 'text-gray-900' 
                       : 'text-gray-500 hover:text-gray-800'}
                   `}
@@ -185,15 +197,16 @@ export default function PremiumHeader({ onNavClick }: HeaderProps) {
               {[
                 { id: 'accueil', label: t('navigation.home') },
                 { id: 'a-propos', label: t('navigation.about'), action: 'about' },
-                { id: 'expertises', label: t('navigation.expertise'), action: 'expertises' },
-                { id: 'contact', label: t('navigation.contact'), action: 'contact' },
-                { id: 'blog', label: t('navigation.blog'), isExternalLink: true }
+                { id: 'intro', label: t('navigation.expertise'), action: 'expertises' },
+                { id: 'blog', label: t('navigation.blog'), isExternalLink: true },
+                { id: 'presse', label: t('navigation.press'), action: 'press' },
+                { id: 'contact', label: t('navigation.contact'), action: 'contact' }
               ].map((item, index) => (
                 <motion.a 
                   key={item.id}
-                  href={item.isExternalLink ? `/${language}/blog` : `#${item.id}`} 
+                  href={item.isExternalLink ? `/${language}/actualites` : `#${item.id}`} 
                   className={`text-2xl font-medium 
-                            ${activeSection === item.id ? 'text-gray-900' : 'text-gray-500'}`}
+                            ${(activeSection === item.id) || (item.id === 'blog' && currentPage === 'blog') ? 'text-gray-900' : 'text-gray-500'}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 + 0.1 }}

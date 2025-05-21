@@ -69,8 +69,8 @@ export default function Expertises() {
     <section ref={sectionRef} className="py-24 bg-white">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-20">
-          <h2 className="font-heading text-3xl md:text-4xl text-primary font-bold mb-6">{t('expertises.title')}</h2>
-          <p className="text-gray-700 text-lg leading-relaxed">
+          <h2 className="font-heading text-3xl md:text-4xl text-primary font-bold mb-8">{t('expertises.title')}</h2>
+          <p className="text-gray-700 text-xl md:text-2xl leading-relaxed font-light">
             {t('expertises.description')}
           </p>
         </div>

@@ -2,17 +2,17 @@ export const translations = {
   fr: {
     navigation: {
       home: 'Accueil',
-      about: 'À propos',
-      expertise: 'Expertises',
-      press: 'Presse',
-      contact: 'Contact',
-      blog: 'Blog'
+      about: 'Équipe',
+      expertise: 'Expertise',
+      press: 'Distinctions',
+      blog: 'Actualités',
+      contact: 'Contact'
     },
   hero: {
     title: 'PY PARTNERS',
     subtitle: 'PARIS',
     tagline: 'We master the details. So, you don\'t have to.',
-    description: 'Cabinet d\'avocats spécialisé en droit social aux côtés des Entreprises et Dirigeants.',
+    description: 'Cabinet d\'avocats spécialisé en droit social aux côtés des Entreprises et Dirigeants',
     cta1: 'Découvrir nos expertises',
     cta2: 'Nous contacter'
   },
@@ -76,31 +76,31 @@ export const translations = {
         },
         individual: {
           title: 'RELATIONS INDIVIDUELLES',
-          description: 'Conseil et gestion des problématiques liées aux contrats de travail, sanctions disciplinaires, ruptures de contrat de travail et enquêtes internes.'
+          description: 'Conseil et gestion des problématiques liées aux contrats de travail, sanctions disciplinaires, ruptures de contrat de travail et enquêtes internes'
         },
         restructuring: {
           title: 'RÉORGANISATIONS / RESTRUCTURATIONS',
-          description: 'Assistance dans la mise en œuvre de plans de réorganisation, de réductions d\'effectifs et de transferts d\'activité, avec une approche stratégique et opérationnelle.'
+          description: 'Assistance dans la mise en œuvre de plans de réorganisation, de réductions d\'effectifs et de transferts d\'activité, avec une approche stratégique et opérationnelle'
         },
         negotiation: {
           title: 'NÉGOCIATION COLLECTIVE',
-          description: 'Gestion des relations sociales et du dialogue avec les représentants du personnel et organisations syndicales.'
+          description: 'Gestion des relations sociales et du dialogue avec les représentants du personnel et organisations syndicales'
         },
         ma: {
           title: 'SUPPORT M&A',
-          description: 'Conseil en matière sociale lors des opérations de fusion-acquisition, audits sociaux, gestion des transferts de personnel et harmonisation des statuts collectifs.'
+          description: 'Conseil en matière sociale lors des opérations de fusion-acquisition, audits sociaux, gestion des transferts de personnel et harmonisation des statuts collectifs'
         },
         litigation: {
           title: 'CONTENTIEUX SOCIAL',
-          description: 'Représentation dans le cadre des litiges individuels et collectifs devant les juridictions prud\'homales, civiles et administratives.'
+          description: 'Représentation dans le cadre des litiges individuels et collectifs devant les juridictions prud\'homales, civiles et administratives'
         },
         security: {
           title: 'SÉCURITE SOCIALE',
-          description: 'Gestion et contestation des accidents du travail et maladies professionnelles et accompagnement dans les contrôles URSSAF.'
+          description: 'Gestion et contestation des accidents du travail et maladies professionnelles et accompagnement dans les contrôles URSSAF'
         },
         mobility: {
           title: 'MOBILITE INTERNATIONALE',
-          description: 'Conseil en matière de détachement, expatriation et gestion des problématiques sociales liées aux mobilités internationales des salariés et dirigeants.'
+          description: 'Conseil en matière de détachement, expatriation et gestion des problématiques sociales liées aux mobilités internationales des salariés et dirigeants'
         }
       }
     },
@@ -156,7 +156,13 @@ export const translations = {
       contact: 'Contact',
       copyright: '© 2025 PY Partners. Tous droits réservés.'
     },
-cookies: {
+    legal: {
+      mentionsLegales: 'Mentions légales',
+      politiqueConfidentialite: 'Politique de confidentialité',
+      politiqueCookies: 'Cookies'
+    },
+
+cookieConsent: {
   title: 'Politique de cookies',
   description: 'Ce site utilise des cookies pour améliorer votre expérience. En poursuivant votre navigation, vous acceptez notre utilisation des cookies.',
   accept: 'Accepter tous les cookies',
@@ -171,9 +177,12 @@ cookies: {
     marketing: 'Cookies marketing'
   }
 },
-    language: 'Français',
+    language: {
+      name: 'Français',
+      current: 'fr'
+    },
     blog: {
-      title: 'Notre Blog',
+      title: 'Actualités',
       description: 'Découvrez nos derniers articles et actualités',
       readMore: 'Lire l\'article',
       backToArticles: 'Retour aux articles',
@@ -188,17 +197,17 @@ cookies: {
   en: {
     navigation: {
       home: 'Home',
-      about: 'About',
+      about: 'Team',
       expertise: 'Expertise',
-      press: 'Press',
-      contact: 'Contact',
-      blog: 'Blog'
+      press: 'Distinctions',
+      blog: 'News',
+      contact: 'Contact'
     },
   hero: {
     title: 'PY PARTNERS',
     subtitle: 'PARIS',
     tagline: 'We master the details. So, you don\'t have to.',
-    description: 'Labor law firm dedicated to supporting Companies and Executives.',
+    description: 'Labor law firm dedicated to supporting Companies and Executives',
     cta1: 'Discover our expertise',
     cta2: 'Contact us'
   },
@@ -262,31 +271,31 @@ cookies: {
         },
         individual: {
           title: 'INDIVIDUAL RELATIONS',
-          description: 'Advice and management of issues related to employment contracts, disciplinary sanctions, termination of employment contracts and internal investigations.'
+          description: 'Advice and management of issues related to employment contracts, disciplinary sanctions, termination of employment contracts and internal investigations'
         },
         restructuring: {
           title: 'REORGANIZATIONS / RESTRUCTURING',
-          description: 'Assistance in implementing reorganization plans, staff reductions and activity transfers, with a strategic and operational approach.'
+          description: 'Assistance in implementing reorganization plans, staff reductions and activity transfers, with a strategic and operational approach'
         },
         negotiation: {
           title: 'COLLECTIVE NEGOTIATION',
-          description: 'Management of social relations and dialogue with staff representatives and trade unions, development, management and securitization of collective agreements.'
+          description: 'Management of social relations and dialogue with staff representatives and trade unions, development, management and securitization of collective agreements'
         },
         ma: {
           title: 'M&A SUPPORT',
-          description: 'Social advice during merger and acquisition operations, social audits, personnel transfer management and harmonization of collective statuses.'
+          description: 'Social advice during merger and acquisition operations, social audits, personnel transfer management and harmonization of collective statuses'
         },
         litigation: {
           title: 'SOCIAL LITIGATION',
-          description: 'Representation in individual and collective disputes before labor, civil and administrative courts.'
+          description: 'Representation in individual and collective disputes before labor, civil and administrative courts'
         },
         security: {
           title: 'SOCIAL SECURITY',
-          description: 'Management and contestation of work accidents and occupational diseases and support in URSSAF controls.'
+          description: 'Management and contestation of work accidents and occupational diseases and support in URSSAF controls'
         },
         mobility: {
           title: 'INTERNATIONAL MOBILITY',
-          description: 'Advice on secondment, expatriation and management of social issues related to international mobility of employees and executives.'
+          description: 'Advice on secondment, expatriation and management of social issues related to international mobility of employees and executives'
         }
       }
     },
@@ -342,7 +351,16 @@ cookies: {
       contact: 'Contact',
       copyright: '© 2025 PY Partners. All rights reserved.'
     },
-    cookies: {
+    legal: {
+      mentionsLegales: 'Legal Notice',
+      politiqueConfidentialite: 'Privacy Policy',
+      politiqueCookies: 'Cookie Policy'
+    },
+    language: {
+      name: 'English',
+      current: 'en'
+    },
+    cookieConsent: {
   title: 'Cookie Policy',
   description: 'This site uses cookies to improve your experience. By continuing to browse, you accept our use of cookies.',
   accept: 'Accept all cookies',
@@ -359,7 +377,7 @@ cookies: {
 },
     language: 'English',
     blog: {
-      title: 'Our Blog',
+      title: 'News',
       description: 'Discover our latest articles and news',
       readMore: 'Read article',
       backToArticles: 'Back to articles',
