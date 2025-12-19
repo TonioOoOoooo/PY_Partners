@@ -53,14 +53,14 @@ export default function EnhancedPressSection() {
           variants={containerVariants}
         >
           <motion.h2 
-            className="font-heading text-3xl md:text-4xl text-primary font-bold mb-6"
+            className="font-heading text-3xl md:text-4xl text-primary font-bold mb-8"
             variants={itemVariants}
           >
             {t('press.title')}
           </motion.h2>
           
           <motion.p 
-            className="text-gray-700 text-lg"
+            className="text-gray-700 text-xl md:text-2xl leading-relaxed font-light"
             variants={itemVariants}
           >
             {t('press.description')}

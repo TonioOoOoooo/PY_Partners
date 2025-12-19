@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Block access to admin area
+Disallow: /admin/
+
+# Directives for images
+User-agent: Googlebot-Image
+Allow: /img/
+
+# Sitemap location
+Sitemap: https://py-partners.com/sitemap.xml

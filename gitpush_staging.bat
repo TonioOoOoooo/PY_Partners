@@ -1,0 +1,17 @@
+@echo off
+rem Générer le sitemap automatiquement
+echo Generation du sitemap...
+node .\scripts\generate-sitemap.js
+rem Script Git pour ajouter tous les fichiers (nouveaux et modifiés)
+rem Afficher l'état actuel
+git status
+rem Demander un message de commit
+set /p commit_message="Entrez votre message de commit : "
+rem Ajouter tous les fichiers (nouveaux, modifiés, supprimés)
+git add -A
+rem Créer un commit avec le message fourni
+git commit -m "%commit_message%"
+rem Pousser les changements vers le dépôt distant - branche staging
+git push origin staging
+echo Changements committés et poussés avec succès vers la branche staging!
+pause

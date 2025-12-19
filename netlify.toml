@@ -2,11 +2,19 @@
   command = "npm run build:static"
   publish = "dist/public"
 
+[functions]
+  directory = "netlify/functions"
+
 [[redirects]]
   from = "/index.php/contact"
   to   = "/#contact"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
 
 [[redirects]]
   from = "/*"

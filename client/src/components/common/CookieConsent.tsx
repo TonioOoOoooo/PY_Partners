@@ -77,10 +77,10 @@ export default function CookieConsent() {
   
   // Paramètres des cookies par catégorie (pour une future implémentation)
   const cookieCategories = [
-    { id: 'necessary', label: t('cookies.categories.necessary') || 'Nécessaires', required: true },
-    { id: 'functional', label: t('cookies.categories.functional') || 'Fonctionnels', required: false },
-    { id: 'analytics', label: t('cookies.categories.analytics') || 'Analytiques', required: false },
-    { id: 'marketing', label: t('cookies.categories.marketing') || 'Marketing', required: false }
+    { id: 'necessary', label: t('cookieConsent.categories.necessary') || 'Nécessaires', required: true },
+    { id: 'functional', label: t('cookieConsent.categories.functional') || 'Fonctionnels', required: false },
+    { id: 'analytics', label: t('cookieConsent.categories.analytics') || 'Analytiques', required: false },
+    { id: 'marketing', label: t('cookieConsent.categories.marketing') || 'Marketing', required: false }
   ];
   
   // Fermeture sans acceptation (considéré comme un refus)
@@ -104,7 +104,7 @@ export default function CookieConsent() {
             // Vue principale
             <>
               <div className="flex justify-between items-start mb-2">
-                <h3 className="font-heading text-lg font-bold text-primary">{t('cookies.title')}</h3>
+                <h3 className="font-heading text-lg font-bold text-primary">{t('cookieConsent.title')}</h3>
                 <button 
                   className="text-gray-400 hover:text-gray-500 p-1" 
                   onClick={closeCookieConsent}
@@ -117,7 +117,7 @@ export default function CookieConsent() {
               </div>
               
               <p className="text-gray-600 text-sm mb-4">
-                {t('cookies.description')}
+                {t('cookieConsent.description')}
               </p>
               
               <div className="flex flex-col sm:flex-row gap-2">
@@ -125,13 +125,13 @@ export default function CookieConsent() {
                   className="bg-secondary hover:bg-secondary/90 text-primary font-medium px-4 py-2 rounded-md transition duration-300 text-sm flex-1"
                   onClick={acceptAllCookies}
                 >
-                  {t('cookies.accept')}
+                  {t('cookieConsent.accept')}
                 </button>
                 <button 
                   className="bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium px-4 py-2 rounded-md transition duration-300 text-sm flex-1"
                   onClick={() => setIsCustomizeOpen(true)}
                 >
-                  {t('cookies.customize')}
+                  {t('cookieConsent.customize')}
                 </button>
               </div>
             </>
@@ -139,7 +139,7 @@ export default function CookieConsent() {
             // Vue de personnalisation
             <>
               <div className="flex justify-between items-start mb-3">
-                <h3 className="font-heading text-lg font-bold text-primary">{t('cookies.customize')}</h3>
+                <h3 className="font-heading text-lg font-bold text-primary">{t('cookieConsent.customize')}</h3>
                 <button 
                   className="text-gray-400 hover:text-gray-500 p-1" 
                   onClick={() => setIsCustomizeOpen(false)}
@@ -163,7 +163,7 @@ export default function CookieConsent() {
                     />
                     <label htmlFor={`cookie-${category.id}`} className="ml-2 block text-sm text-gray-700">
                       {category.label}
-                      {category.required && <span className="text-xs text-gray-500 ml-1">({t('cookies.required')})</span>}
+                      {category.required && <span className="text-xs text-gray-500 ml-1">({t('cookieConsent.required')})</span>}
                     </label>
                   </div>
                 ))}
@@ -174,13 +174,13 @@ export default function CookieConsent() {
                   className="bg-secondary hover:bg-secondary/90 text-primary font-medium px-4 py-2 rounded-md transition duration-300 text-sm flex-1"
                   onClick={acceptAllCookies}
                 >
-                  {t('cookies.savePreferences')}
+                  {t('cookieConsent.savePreferences')}
                 </button>
                 <button 
                   className="bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium px-4 py-2 rounded-md transition duration-300 text-sm flex-1"
                   onClick={() => setIsCustomizeOpen(false)}
                 >
-                  {t('cookies.cancel')}
+                  {t('cookieConsent.cancel')}
                 </button>
               </div>
             </>

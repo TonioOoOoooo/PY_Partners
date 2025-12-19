@@ -10,7 +10,7 @@ interface FooterProps {
 }
 
 export default function Footer({ onNavClick }: FooterProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <footer className="bg-black text-white py-16">
@@ -93,6 +93,14 @@ export default function Footer({ onNavClick }: FooterProps) {
                   {t('navigation.contact')}
                 </a>
               </li>
+              <li>
+                <a 
+                  href="/blog" 
+                  className="text-gray-300 hover:text-white transition-colors duration-200 text-sm"
+                >
+                  {t('navigation.blog')}
+                </a>
+              </li>
             </ul>
           </div>
           
@@ -117,6 +125,19 @@ export default function Footer({ onNavClick }: FooterProps) {
         </div>
         
         <div className="mt-14 pt-8 border-t border-gray-800 text-center text-gray-500 text-xs">
+          <div className="flex justify-center space-x-4 mb-4">
+            <a href={`/${language}/mentions-legales`} className="text-gray-400 hover:text-white transition-colors duration-200">
+              {t('legal.mentionsLegales')}
+            </a>
+            <span className="text-gray-600">|</span>
+            <a href={`/${language}/politique-confidentialite`} className="text-gray-400 hover:text-white transition-colors duration-200">
+              {t('legal.politiqueConfidentialite')}
+            </a>
+            <span className="text-gray-600">|</span>
+            <a href={`/${language}/politique-cookies`} className="text-gray-400 hover:text-white transition-colors duration-200">
+              {t('legal.politiqueCookies')}
+            </a>
+          </div>
           <p>{t('footer.copyright')}</p>
           <div className="mt-2 legal-text">
             Fonts made from <a href="http://www.onlinewebfonts.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Web Fonts</a> is licensed by CC BY 4.0

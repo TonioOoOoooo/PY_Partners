@@ -19,6 +19,7 @@ import { useState } from 'react';
 export default function Home() {
   const [showSplash, setShowSplash] = useState(false);
   const aboutRef = useRef<HTMLDivElement>(null);
+  const introRef = useRef<HTMLDivElement>(null);
   const expertisesRef = useRef<HTMLDivElement>(null);
   const pressRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
@@ -68,19 +69,21 @@ export default function Home() {
         <Header 
           onNavClick={{
             about: () => scrollToSection(aboutRef),
-            expertises: () => scrollToSection(expertisesRef),
+            expertises: () => scrollToSection(introRef),
             press: () => scrollToSection(pressRef),
             contact: () => scrollToSection(contactRef),
           }}
         />
         <main>
           <Hero 
-            onDiscoverClick={() => scrollToSection(expertisesRef)}
+            onDiscoverClick={() => scrollToSection(introRef)}
             onContactClick={() => scrollToSection(contactRef)}
           />
-          <Introduction />
           <section ref={aboutRef} id="a-propos">
             <About />
+          </section>
+          <section ref={introRef} id="intro">
+            <Introduction />
           </section>
           <section ref={expertisesRef} id="expertises">
             <Expertises />
@@ -95,7 +98,7 @@ export default function Home() {
         <Footer 
           onNavClick={{
             about: () => scrollToSection(aboutRef),
-            expertises: () => scrollToSection(expertisesRef),
+            expertises: () => scrollToSection(introRef),
             press: () => scrollToSection(pressRef),
             contact: () => scrollToSection(contactRef),
           }}
