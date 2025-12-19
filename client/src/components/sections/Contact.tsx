@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useMemo, useState } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { motion } from "framer-motion";
@@ -9,22 +9,30 @@ import { apiRequest } from '@/lib/queryClient'; // Utilisons l'utilitaire apiReq
 import { useMutation } from '@tanstack/react-query';
 import { useToast } from '@/hooks/use-toast';
 
-// Define the form schema using zod
-const formSchema = z.object({
-  name: z.string().min(2, { message: 'Name must be at least 2 characters' }),
-  email: z.string().email({ message: 'Please enter a valid email' }),
-  phone: z.string().min(5, { message: 'Please enter a valid phone number' }),
-  message: z.string().min(10, { message: 'Message must be at least 10 characters' }),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+type FormValues = {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+};
 
 export default function Contact() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { reveal } = useScrollReveal();
   const { toast } = useToast();
   const sectionRef = useRef<HTMLDivElement>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const formSchema = useMemo(
+    () =>
+      z.object({
+        name: z.string().min(2, { message: t('contact.form.errors.nameMin') }),
+        email: z.string().email({ message: t('contact.form.errors.emailInvalid') }),
+        phone: z.string().min(5, { message: t('contact.form.errors.phoneMin') }),
+        message: z.string().min(10, { message: t('contact.form.errors.messageMin') }),
+      }),
+    [language, t],
+  );
 
   useEffect(() => {
     if (sectionRef.current) {
@@ -32,8 +40,10 @@ export default function Contact() {
     }
   }, [reveal]);
 
+  const resolver = useMemo(() => zodResolver(formSchema), [formSchema]);
+
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver,
     defaultValues: {
       name: '',
       email: '',
@@ -50,8 +60,8 @@ export default function Contact() {
     },
     onSuccess: () => {
       toast({
-        title: t('language') === 'Français' ? "Succès" : "Success",
-        description: t('language') === 'Français' 
+        title: language === 'fr' ? "Succès" : "Success",
+        description: language === 'fr' 
           ? "Votre message a été envoyé. Nous vous contacterons bientôt."
           : "Your message has been sent. We'll contact you soon.",
       });
@@ -60,8 +70,8 @@ export default function Contact() {
     },
     onError: (error) => {
       toast({
-        title: t('language') === 'Français' ? "Erreur" : "Error",
-        description: t('language') === 'Français'
+        title: language === 'fr' ? "Erreur" : "Error",
+        description: language === 'fr'
           ? `Échec de l'envoi du message: ${error instanceof Error ? error.message : 'Erreur inconnue'}`
           : `Failed to send message: ${error instanceof Error ? error.message : 'Unknown error'}`,
         variant: "destructive",
@@ -71,8 +81,8 @@ export default function Contact() {
 
   const onSubmit = (data: FormValues) => {
   // Suivi Google Analytics
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', 'contact_form_submission', {
+  if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
+    (window as any).gtag('event', 'contact_form_submission', {
       'event_category': 'engagement',
       'event_label': 'Contact Form'
     });
@@ -169,7 +179,7 @@ export default function Contact() {
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
-                        {t('language') === 'Français' ? 'Traitement en cours...' : 'Processing...'}
+                        {t('contact.form.pending')}
                       </span>
                     ) : (
                       t('contact.form.submit')
@@ -235,6 +245,7 @@ export default function Contact() {
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10496.856055671008!2d2.3195280356631173!3d48.86872899687341!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2f9719f48f%3A0xd4c836ef33c117e8!2s13%20Rue%20Royale%2C%2075008%20Paris!5e0!3m2!1sfr!2sfr!4v1714597513644!5m2!1sfr!2sfr" 
                       width="100%" 
                       height="280" 
+                      className="grayscale hover:grayscale-0 transition duration-300"
                       style={{ border: 0 }} 
                       allowFullScreen 
                       loading="lazy" 

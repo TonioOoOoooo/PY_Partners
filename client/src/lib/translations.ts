@@ -128,10 +128,17 @@ export const translations = {
         phone: 'Téléphone',
         message: 'Message',
         submit: 'Envoyer',
+        pending: 'Traitement en cours...',
         namePlaceholder: 'Votre nom',
         emailPlaceholder: 'Votre email',
         phonePlaceholder: 'Votre téléphone',
-        messagePlaceholder: 'Votre message'
+        messagePlaceholder: 'Votre message',
+        errors: {
+          nameMin: 'Le nom doit contenir au moins 2 caractères',
+          emailInvalid: 'Veuillez saisir une adresse email valide',
+          phoneMin: 'Veuillez saisir un numéro de téléphone valide',
+          messageMin: 'Le message doit contenir au moins 10 caractères'
+        }
       },
       info: {
         title: 'Informations de contact',
@@ -323,10 +330,17 @@ cookieConsent: {
         phone: 'Phone',
         message: 'Message',
         submit: 'Send',
+        pending: 'Processing...',
         namePlaceholder: 'Your name',
         emailPlaceholder: 'Your email',
         phonePlaceholder: 'Your phone',
-        messagePlaceholder: 'Your message'
+        messagePlaceholder: 'Your message',
+        errors: {
+          nameMin: 'Name must be at least 2 characters',
+          emailInvalid: 'Please enter a valid email',
+          phoneMin: 'Please enter a valid phone number',
+          messageMin: 'Message must be at least 10 characters'
+        }
       },
       info: {
         title: 'Contact information',
@@ -375,7 +389,6 @@ cookieConsent: {
     marketing: 'Marketing cookies'
   }
 },
-    language: 'English',
     blog: {
       title: 'News',
       description: 'Discover our latest articles and news',
