@@ -252,8 +252,9 @@ app.use((req, res, next) => {
   } else {
     serveStatic(app);
   }
-  const port = 3e3;
+  const envPort = process.env.PORT ? Number(process.env.PORT) : NaN;
+  const port = Number.isFinite(envPort) && envPort >= 1024 ? envPort : 3e3;
   server.listen(port, () => {
-    log(`serving on port ${port}`);
+    log(`serving on http://localhost:${port}`);
   });
 })();
