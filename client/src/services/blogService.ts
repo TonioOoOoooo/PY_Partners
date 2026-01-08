@@ -16,78 +16,6 @@ export interface BlogArticle {
   date: string; // Date de publication
 }
 
-const parseArticleDate = (rawDate: string): number => {
-  if (!rawDate) return 0;
-
-  const value = String(rawDate).trim();
-  if (!value) return 0;
-
-  // 1) Essai direct (ISO / formats reconnus par le navigateur)
-  const native = Date.parse(value);
-  if (!Number.isNaN(native)) return native;
-
-  // 2) Formats type dd/mm/yyyy ou dd-mm-yyyy
-  const dmy = value.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/);
-  if (dmy) {
-    const day = Number(dmy[1]);
-    const month = Number(dmy[2]);
-    const year = Number(dmy[3]);
-    const dt = new Date(year, month - 1, day);
-    const ts = dt.getTime();
-    return Number.isNaN(ts) ? 0 : ts;
-  }
-
-  // 3) Formats type "1-sept.-2024" (mois FR avec point optionnel)
-  const fr = value
-    .toLowerCase()
-    .match(/^(\d{1,2})[\s\-/_.]*([a-zàâäéèêëîïôöùûüç]+)\.?[\s\-/_.]*(\d{4})$/i);
-
-  if (fr) {
-    const day = Number(fr[1]);
-    const monthStr = fr[2].replace('.', '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    const year = Number(fr[3]);
-
-    const monthMap: Record<string, number> = {
-      jan: 1,
-      janv: 1,
-      janvier: 1,
-      fev: 2,
-      fevr: 2,
-      fevrier: 2,
-      mar: 3,
-      mars: 3,
-      avr: 4,
-      avril: 4,
-      mai: 5,
-      jun: 6,
-      juin: 6,
-      jul: 7,
-      juil: 7,
-      juillet: 7,
-      aou: 8,
-      aout: 8,
-      sep: 9,
-      sept: 9,
-      septembre: 9,
-      oct: 10,
-      octobre: 10,
-      nov: 11,
-      novembre: 11,
-      dec: 12,
-      decembre: 12
-    };
-
-    const month = monthMap[monthStr] || monthMap[monthStr.slice(0, 4)] || monthMap[monthStr.slice(0, 3)];
-    if (month) {
-      const dt = new Date(year, month - 1, day);
-      const ts = dt.getTime();
-      return Number.isNaN(ts) ? 0 : ts;
-    }
-  }
-
-  return 0;
-};
-
 // Fonction pour vérifier si un article est publié
 const isPublished = (status: string | number | boolean): boolean => {
   // Gérer les cas null/undefined
@@ -165,14 +93,18 @@ export const getPublishedArticles = async (): Promise<BlogArticle[]> => {
     // Récupérer tous les articles du Google Sheet
     const sheetArticles = await fetchArticlesFromSheet();
     
-    // Filtrer les articles publiés
-    const publishedArticles = sheetArticles.filter((article, index) => {
-      const isArticlePublished = isPublished(article.statut);
-      return isArticlePublished;
-    });
-    
+    // Filtrer les articles publiés en conservant l'index de ligne du sheet
+    const publishedWithRowIndex = sheetArticles
+      .map((article, rowIndex) => ({ article, rowIndex }))
+      .filter(({ article }) => isPublished(article.statut));
+
+    // Afficher du bas vers le haut (les lignes du bas sont les plus récentes)
+    const orderedPublished = publishedWithRowIndex
+      .sort((a, b) => b.rowIndex - a.rowIndex)
+      .map(({ article }) => article);
+
     // Convertir les articles publiés en BlogArticle
-    const blogArticles = publishedArticles.map(convertSheetArticleToBlogArticle);
+    const blogArticles = orderedPublished.map(convertSheetArticleToBlogArticle);
     
     // Vérifier les slugs pour détecter d'éventuels doublons
     const slugCounts: Record<string, number> = {};
@@ -189,17 +121,8 @@ export const getPublishedArticles = async (): Promise<BlogArticle[]> => {
       }
       return article;
     });
-    
-    // Trier les articles par date (plus récents en premier)
-    return uniqueBlogArticles.sort((a, b) => {
-      const tsA = parseArticleDate(a.date);
-      const tsB = parseArticleDate(b.date);
 
-      if (tsA !== tsB) return tsB - tsA;
-
-      // Fallback stable si date absente / invalide
-      return a.title.localeCompare(b.title);
-    });
+    return uniqueBlogArticles;
   } catch (error) {
     console.error('Erreur dans getPublishedArticles:', error);
     return [];

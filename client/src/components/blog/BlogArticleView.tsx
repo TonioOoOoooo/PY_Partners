@@ -17,6 +17,7 @@ const BlogArticleView: React.FC = () => {
   const [article, setArticle] = useState<BlogArticle | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isImageOpen, setIsImageOpen] = useState(false);
   
   const { t, language } = useLanguage();
 
@@ -44,6 +45,25 @@ const BlogArticleView: React.FC = () => {
 
     fetchArticle();
   }, [slug, language]);
+
+  useEffect(() => {
+    if (!isImageOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsImageOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isImageOpen]);
 
   if (loading) {
     return (
@@ -98,13 +118,79 @@ const BlogArticleView: React.FC = () => {
           
           {article.imageUrl && (
             <div className="mb-16">
-              <PremiumImage
-                src={article.imageUrl}
-                alt={title}
-                className="w-full h-[500px]"
-                filterIntensity="medium"
-                hoverEffect="color"
-              />
+              <button
+                type="button"
+                onClick={() => setIsImageOpen(true)}
+                className="group relative block w-full text-left"
+                aria-label={language === 'fr' ? 'Ouvrir l\'image en grand' : 'Open image'}
+              >
+                <PremiumImage
+                  src={article.imageUrl}
+                  alt={title}
+                  className="w-full h-[500px]"
+                  filterIntensity="medium"
+                  hoverEffect="color"
+                />
+                <div className="pointer-events-none absolute inset-0 flex items-end justify-end p-4">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="inline-flex items-center gap-2 bg-black/70 text-white text-xs uppercase tracking-widest px-4 py-2">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-90">
+                        <path d="M10 5H7C5.89543 5 5 5.89543 5 7V10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M14 5H17C18.1046 5 19 5.89543 19 7V10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M10 19H7C5.89543 19 5 18.1046 5 17V14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M14 19H17C18.1046 19 19 18.1046 19 17V14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                      </svg>
+                      <span>{language === 'fr' ? 'Agrandir' : 'Expand'}</span>
+                    </div>
+                  </div>
+                </div>
+              </button>
+            </div>
+          )}
+
+          {isImageOpen && article.imageUrl && (
+            <div
+              className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm"
+              role="dialog"
+              aria-modal="true"
+              onClick={() => setIsImageOpen(false)}
+            >
+              <div className="absolute inset-0 p-4 md:p-10 flex items-center justify-center">
+                <div
+                  className="relative w-full max-w-6xl"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setIsImageOpen(false)}
+                    className="absolute -top-2 -right-2 md:top-0 md:right-0 bg-white/90 hover:bg-white text-black w-10 h-10 flex items-center justify-center"
+                    aria-label={language === 'fr' ? 'Fermer' : 'Close'}
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                      <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                  </button>
+
+                  <img
+                    src={article.imageUrl}
+                    alt={title}
+                    className="w-full max-h-[85vh] object-contain bg-black"
+                  />
+
+                  <div className="mt-4 flex items-center justify-between text-white/80 text-xs uppercase tracking-widest">
+                    <span>{language === 'fr' ? 'Cliquez hors image ou ESC pour fermer' : 'Click outside or ESC to close'}</span>
+                    <a
+                      href={article.imageUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white/90 hover:text-white border-b border-white/40 hover:border-white/70 transition-colors duration-200"
+                    >
+                      {language === 'fr' ? 'Ouvrir dans un nouvel onglet' : 'Open in new tab'}
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
           
