@@ -8,6 +8,7 @@ import BlogArticleView from '@/components/blog/BlogArticleView';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import PageTransition from '@/components/common/PageTransition';
+import { BreadcrumbSchema, createBreadcrumbs } from '@/components/BreadcrumbSchema';
 
 const ArticleActualites: React.FC = () => {
   const [, params] = useRoute('/fr/actualites/:slug');
@@ -70,19 +71,19 @@ const ArticleActualites: React.FC = () => {
         <meta name="description" content={description} />
         {article && (
           <>
-            <link 
-              rel="alternate" 
-              hrefLang="fr" 
-              href={`https://py-partners.com/fr/actualites/${article.slug}`} 
+            <link
+              rel="alternate"
+              hrefLang="fr"
+              href={`https://py-partners.com/fr/actualites/${article.slug}`}
             />
-            <link 
-              rel="alternate" 
-              hrefLang="en" 
-              href={`https://py-partners.com/en/actualites/${article.slug}`} 
+            <link
+              rel="alternate"
+              hrefLang="en"
+              href={`https://py-partners.com/en/actualites/${article.slug}`}
             />
-            <link 
-              rel="canonical" 
-              href={`https://py-partners.com/${language === 'fr' ? 'fr' : 'en'}/actualites/${article.slug}`} 
+            <link
+              rel="canonical"
+              href={`https://py-partners.com/${language === 'fr' ? 'fr' : 'en'}/actualites/${article.slug}`}
             />
             {article.imageUrl && (
               <meta property="og:image" content={article.imageUrl} />
@@ -90,6 +91,15 @@ const ArticleActualites: React.FC = () => {
           </>
         )}
       </Helmet>
+
+      {article && (
+        <BreadcrumbSchema
+          items={createBreadcrumbs.article(
+            language === 'fr' ? article.title : (article.title_en || article.title),
+            article.slug
+          )}
+        />
+      )}
 
       <div className="min-h-screen bg-white">
         <Header onNavClick={handleNavClick} currentPage="blog" />

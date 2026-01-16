@@ -52,14 +52,15 @@ const processImageUrl = (url: string, index: number): string => {
 // Fonction principale de récupération des articles
 export const fetchArticlesFromSheet = async (): Promise<BlogArticleSheet[]> => {
   try {
-    // Désactiver le cache temporairement pour débogage
-    // const cachedArticles = localStorage.getItem(CACHE_KEY);
-    // if (cachedArticles) {
-    //   const cache = JSON.parse(cachedArticles);
-    //   if (cache.expiry > Date.now()) {
-    //     return cache.data;
-    //   }
-    // }
+    // Check cache first for better performance
+    const cachedArticles = localStorage.getItem(CACHE_KEY);
+    if (cachedArticles) {
+      const cache = JSON.parse(cachedArticles);
+      if (cache.expiry > Date.now()) {
+        console.log('Returning cached articles (TTL: 5 minutes)');
+        return cache.data;
+      }
+    }
 
     // Construire l'URL de l'API Google Sheets
     const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;

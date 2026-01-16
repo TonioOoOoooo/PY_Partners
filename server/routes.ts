@@ -1,14 +1,32 @@
 import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
+import rateLimit from "express-rate-limit";
 import fetch from "node-fetch"; // Importation ESM correcte
 import { storage } from "./storage";
 import { contactSubmissionSchema } from "@shared/schema";
 import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
 
+// Rate limiter for contact form - 5 requests per 15 minutes per IP
+const contactLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // Limit each IP to 5 requests per windowMs
+  message: {
+    message: "Trop de tentatives de contact depuis cette adresse IP, veuillez réessayer plus tard.",
+    error: "rate_limit_exceeded"
+  },
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  // Skip rate limiting for trusted IPs (optional)
+  skip: (req) => {
+    const trustedIPs = process.env.TRUSTED_IPS?.split(',') || [];
+    return trustedIPs.includes(req.ip || '');
+  }
+});
+
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Contact form submission endpoint
-  app.post("/api/contact", async (req: Request, res: Response) => {
+  // Contact form submission endpoint with rate limiting
+  app.post("/api/contact", contactLimiter, async (req: Request, res: Response) => {
     try {
       // Log des données reçues pour debug
       console.log("Données du formulaire reçues:", req.body);
@@ -34,7 +52,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Envoyer les données à Make.com
       try {
-        const makeResponse = await fetch('https://hook.eu2.make.com/kqchehwlv9xkxfxeeojg8wfcarn9aos9', {
+        const webhookUrl = process.env.MAKE_WEBHOOK_URL;
+        if (!webhookUrl) {
+          throw new Error('MAKE_WEBHOOK_URL environment variable is not configured');
+        }
+
+        const makeResponse = await fetch(webhookUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

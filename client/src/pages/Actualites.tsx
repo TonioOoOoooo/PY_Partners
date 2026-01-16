@@ -5,6 +5,7 @@ import BlogList from '@/components/blog/BlogList';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import PageTransition from '@/components/common/PageTransition';
+import { BreadcrumbSchema, createBreadcrumbs } from '@/components/BreadcrumbSchema';
 
 const Actualites: React.FC = () => {
   const { t, language } = useLanguage();
@@ -43,6 +44,8 @@ const Actualites: React.FC = () => {
         <link rel="alternate" hrefLang="en" href="https://py-partners.com/en/actualites" />
         <link rel="canonical" href={`https://py-partners.com/${language === 'fr' ? 'fr' : 'en'}/actualites`} />
       </Helmet>
+
+      <BreadcrumbSchema items={createBreadcrumbs.actualites()} />
 
       <div className="min-h-screen bg-white">
         <Header onNavClick={handleNavClick} currentPage="blog" />
