@@ -9,6 +9,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import PageTransition from '@/components/common/PageTransition';
 import { BreadcrumbSchema, createBreadcrumbs } from '@/components/BreadcrumbSchema';
+import { BlogPostingSchema } from '@/components/ArticleSchema';
 
 const ArticleActualites: React.FC = () => {
   const [, params] = useRoute('/fr/actualites/:slug');
@@ -93,12 +94,23 @@ const ArticleActualites: React.FC = () => {
       </Helmet>
 
       {article && (
-        <BreadcrumbSchema
-          items={createBreadcrumbs.article(
-            language === 'fr' ? article.title : (article.title_en || article.title),
-            article.slug
-          )}
-        />
+        <>
+          <BreadcrumbSchema
+            items={createBreadcrumbs.article(
+              language === 'fr' ? article.title : (article.title_en || article.title),
+              article.slug
+            )}
+          />
+          <BlogPostingSchema
+            title={language === 'fr' ? article.title : (article.title_en || article.title)}
+            description={language === 'fr' ? article.resume : (article.summary_en || article.resume)}
+            imageUrl={article.imageUrl}
+            datePublished={article.date}
+            category={article.categorie}
+            tags={article.tags}
+            url={`https://py-partners.com/${language === 'fr' ? 'fr' : 'en'}/actualites/${article.slug}`}
+          />
+        </>
       )}
 
       <div className="min-h-screen bg-white">

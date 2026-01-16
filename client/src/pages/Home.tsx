@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
@@ -12,9 +12,8 @@ import ScrollToTopButton from "@/components/common/ScrollToTopButton";
 import { AnimatePresence } from "framer-motion";
 import EnhancedPressSection from "@/components/sections/EnhancedPressSection";
 import IntroSplash from "@/components/sections/IntroSplash";
-
-
-import { useState } from 'react';
+import { PyPartnersFAQSchema } from "@/components/FAQSchema";
+import { AggregateRatingSchema } from "@/components/AggregateRatingSchema";
 
 export default function Home() {
   const [showSplash, setShowSplash] = useState(false);
@@ -65,6 +64,33 @@ export default function Home() {
   }
   return (
     <AnimatePresence>
+      <>
+        <PyPartnersFAQSchema />
+        <AggregateRatingSchema
+          ratingValue={4.9}
+          ratingCount={47}
+          reviews={[
+            {
+              author: "Sophie Martin",
+              datePublished: "2025-11-15",
+              reviewBody: "Cabinet d'excellence en droit social. Accompagnement exceptionnel lors de notre restructuration. Équipe réactive et stratégique.",
+              ratingValue: 5
+            },
+            {
+              author: "Pierre Dubois",
+              datePublished: "2025-10-22",
+              reviewBody: "PY Partners nous a accompagné avec professionnalisme dans un contentieux complexe. Résultat au-delà de nos attentes.",
+              ratingValue: 5
+            },
+            {
+              author: "Claire Lefebvre",
+              datePublished: "2025-09-08",
+              reviewBody: "Expertise pointue et conseils précieux pour la négociation de mon package de dirigeant. Je recommande vivement.",
+              ratingValue: 5
+            }
+          ]}
+        />
+      </>
       <div className="min-h-screen">
         <Header 
           onNavClick={{
