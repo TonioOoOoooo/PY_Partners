@@ -24,14 +24,28 @@ export function ArticleSchema({
   authorName = "PY Partners",
   url
 }: ArticleSchemaProps) {
+  // Ensure dates are in ISO 8601 format
+  const formatDate = (date: string) => {
+    if (!date) return new Date().toISOString();
+    // If already ISO format, return as is
+    if (date.includes('T')) return date;
+    // Otherwise, convert to ISO
+    return new Date(date).toISOString();
+  };
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": title,
     "description": description,
-    "image": imageUrl,
-    "datePublished": datePublished,
-    "dateModified": dateModified || datePublished,
+    "image": {
+      "@type": "ImageObject",
+      "url": imageUrl,
+      "width": 1200,
+      "height": 630
+    },
+    "datePublished": formatDate(datePublished),
+    "dateModified": formatDate(dateModified || datePublished),
     "author": {
       "@type": "Organization",
       "name": authorName,
@@ -40,9 +54,12 @@ export function ArticleSchema({
     "publisher": {
       "@type": "Organization",
       "name": "PY Partners",
+      "url": "https://py-partners.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://py-partners.com/img/logo.png"
+        "url": "https://py-partners.com/img/logo.png",
+        "width": 600,
+        "height": 60
       }
     },
     "mainEntityOfPage": {
@@ -85,14 +102,28 @@ export function BlogPostingSchema({
   tags = [],
   url
 }: BlogPostingSchemaProps) {
+  // Ensure dates are in ISO 8601 format
+  const formatDate = (date: string) => {
+    if (!date) return new Date().toISOString();
+    // If already ISO format, return as is
+    if (date.includes('T')) return date;
+    // Otherwise, convert to ISO
+    return new Date(date).toISOString();
+  };
+
   const blogPostingSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": title,
     "description": description,
-    "image": imageUrl,
-    "datePublished": datePublished,
-    "dateModified": dateModified || datePublished,
+    "image": {
+      "@type": "ImageObject",
+      "url": imageUrl,
+      "width": 1200,
+      "height": 630
+    },
+    "datePublished": formatDate(datePublished),
+    "dateModified": formatDate(dateModified || datePublished),
     "author": {
       "@type": "Organization",
       "name": "PY Partners",
@@ -101,9 +132,12 @@ export function BlogPostingSchema({
     "publisher": {
       "@type": "Organization",
       "name": "PY Partners",
+      "url": "https://py-partners.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://py-partners.com/img/logo.png"
+        "url": "https://py-partners.com/img/logo.png",
+        "width": 600,
+        "height": 60
       }
     },
     "mainEntityOfPage": {
