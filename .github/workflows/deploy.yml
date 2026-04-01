@@ -1,4 +1,4 @@
-name: Deploy py_partners to VPS
+name: Deploy py-partners to VPS
 
 on:
   push:
