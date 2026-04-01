@@ -23,8 +23,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
+      - name: Build static
+        run: npm run build:static
 
       - name: Setup SSH key and known_hosts
         shell: bash
@@ -58,11 +58,11 @@ jobs:
             "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
             "mkdir -p '${{ secrets.SSH_TARGET_DIR }}'"
 
-      - name: Deploy dist to VPS
+      - name: Deploy static build to VPS
         shell: bash
         run: |
           set -e
           rsync -avz --delete \
             -e "ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -p ${{ secrets.SSH_PORT }}" \
-            dist/ \
+            dist/public/ \
             "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_TARGET_DIR }}/"
